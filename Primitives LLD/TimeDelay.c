@@ -39,7 +39,7 @@ PAT	2010.01.26	CONVERTED LOCALS TO VOLATILE
 PAT	2010.03.07	ADDED include "Compiler.h"
 *******************************************************************************/
 #if defined(__PIC32MX__)
-	#include <plib.h>
+    #include <plib.h>
 #endif
 //#include "Compiler.h"
 //#include "HardwareProfile.h"
@@ -71,7 +71,6 @@ void Delay10us( UINT32 tenMicroSecondCounter )
     volatile INT32 cyclesRequiredForEntireDelay;    
         
     #if defined(__18CXX)
-    
         if (GetInstructionClock() <= 2500000) //for all FCY speeds under 2MHz (FOSC <= 10MHz)
         {
             //26 cycles burned through this path (includes return to caller).
@@ -108,7 +107,6 @@ void Delay10us( UINT32 tenMicroSecondCounter )
         }
     
     #elif defined(__C30__) || defined(__PIC32MX__)
-    
         if(GetInstructionClock() <= 500000) //for all FCY speeds under 500KHz (FOSC <= 1MHz)
         {
             //10 cycles burned through this path (includes return to caller).
@@ -175,7 +173,6 @@ void Delay10us( UINT32 tenMicroSecondCounter )
 void DelayMs( UINT16 ms )
 {
     #if defined(__18CXX)
-        
         INT32 cyclesRequiredForEntireDelay;
         
         // We want to pre-calculate number of cycles required to delay 1ms, using a 1 cycle granule.
@@ -199,7 +196,6 @@ void DelayMs( UINT16 ms )
         }
         
     #elif defined(__C30__) || defined(__PIC32MX__)
-    
         volatile UINT8 i;
         
         while (ms--)

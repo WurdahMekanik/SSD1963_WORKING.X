@@ -99,13 +99,13 @@ void SetArea(SHORT start_x, SHORT start_y, SHORT end_x, SHORT end_y)
 *
 * PreCondition: Set the GPIO pin an output prior using this function
 *
-* Arguments: BYTE pin	- 	LCD_RESET
-*							LCD_SPENA
-*							LCD_SPCLK
-*							LCD_SPDAT	defined under GraphicsConfig.h
+* Arguments: BYTE pin   -   LCD_RESET
+*                           LCD_SPENA
+*                           LCD_SPCLK
+*                           LCD_SPDAT   defined under GraphicsConfig.h
 *							
-*			 BOOL state - 	0 for low
-*							1 for high
+*            BOOL state -   0 for low
+*                           1 for high
 * Return: none
 *
 * Note:
@@ -219,7 +219,6 @@ void SetBacklight(BYTE intensity)
     WriteData(0x00);
     CS_LAT_BIT = 1;
 }
-
 /*********************************************************************
 * Function:  void  SetTearingCfg(BOOL state, BOOL mode)
 *
@@ -251,7 +250,29 @@ void SetTearingCfg(BOOL state, BOOL mode)
         WriteCommand(0x34);
     }
 }
-
+/*********************************************************************
+* Function: void PutPixel(SHORT x, SHORT y)
+*
+* PreCondition: none
+*
+* Input: x,y - pixel coordinates
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Overview: puts pixel
+*
+* Note:
+********************************************************************/
+void PutPixel(SHORT x, SHORT y)
+{
+    SetArea(x,y,DISP_HOR_RESOLUTION-1,DISP_VER_RESOLUTION-1);
+    WriteCommand(CMD_WR_MEMSTART);
+    CS_LAT_BIT = 0;
+    WriteData(_color);
+    CS_LAT_BIT = 1;
+}
 /*********************************************************************
 * Function:  void ResetDevice()
 *
@@ -487,32 +508,6 @@ void ResetDevice(void)
     // Turn on display; show the image on display
     DisplayOn();
 }
-
-/*********************************************************************
-* Function: void PutPixel(SHORT x, SHORT y)
-*
-* PreCondition: none
-*
-* Input: x,y - pixel coordinates
-*
-* Output: none
-*
-* Side Effects: none
-*
-* Overview: puts pixel
-*
-* Note: 
-********************************************************************/
-void PutPixel(SHORT x, SHORT y)
-{
-    SetArea(x,y,DISP_HOR_RESOLUTION-1,DISP_VER_RESOLUTION-1);
-    WriteCommand(CMD_WR_MEMSTART);
-    CS_LAT_BIT = 0;
-    WriteData(_color);
-    CS_LAT_BIT = 1;
-}
-
-
 /*********************************************************************
 * Function: void ClearDevice(void)
 *
@@ -546,6 +541,3 @@ void ClearDevice(void)
     }
     CS_LAT_BIT = 1;
 }
-
-
-

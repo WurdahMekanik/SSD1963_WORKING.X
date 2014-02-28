@@ -4,6 +4,66 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="BoardSupportPackage"
+                     displayName="BoardSupportPackage"
+                     projectFiles="true">
+        <itemPath>../Board Support Package/TouchScreen.h</itemPath>
+        <itemPath>../Board Support Package/TouchScreenAR1020.h</itemPath>
+        <itemPath>../Board Support Package/TouchScreenResistive.h</itemPath>
+        <itemPath>../Board Support Package/Beep.h</itemPath>
+        <itemPath>../Board Support Package/SST25VF016.h</itemPath>
+        <itemPath>../Board Support Package/cpld.h</itemPath>
+        <itemPath>../Board Support Package/drv_spi.h</itemPath>
+        <itemPath>../Board Support Package/SST39LF400.h</itemPath>
+        <itemPath>../Board Support Package/SST39VF040.h</itemPath>
+        <itemPath>../Board Support Package/MCHP25LC256.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Common" displayName="Common" projectFiles="true">
+        <itemPath>../Microchip/Include/GenericTypeDefs.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Drivers" displayName="Drivers" projectFiles="true">
+        <itemPath>../Microchip/Include/Graphics/DisplayDriver.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/DisplayDriverInterface.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/gfxcolors.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/gfxpmp.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/gfxtcon.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/gfxepmp.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/HIT1270.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/HX8347.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/mchpGfxDrv.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/mchpGfxLCC.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/S1D13517.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/SH1101A_SSD1303.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/SSD1339.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/SSD1926.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/ST7529.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/UC1610.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/drvTFT001.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/drvTFT002.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Graphics" displayName="Graphics" projectFiles="true">
+        <itemPath>../Microchip/Include/Graphics/GOL.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/Graphics.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/Palette.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/Primitive.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/ScanCodes.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/Button.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/CheckBox.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/Meter.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/DigitalMeter.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/Chart.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/RadioButton.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/ListBox.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/GroupBox.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/EditBox.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/Window.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/Slider.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/StaticText.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/RoundDial.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/Picture.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/ProgressBar.h</itemPath>
+        <itemPath>../Microchip/Include/Graphics/TextEntry.h</itemPath>
+      </logicalFolder>
       <itemPath>system.h</itemPath>
       <itemPath>user.h</itemPath>
       <itemPath>config_bits.h</itemPath>
@@ -11,6 +71,12 @@
       <itemPath>Primitives LLD/TFT.h</itemPath>
       <itemPath>Primitives LLD/SSD1963_CMD.h</itemPath>
       <itemPath>Primitives LLD/SSD1963.h</itemPath>
+      <itemPath>HardwareProfile.h</itemPath>
+      <itemPath>GraphicsConfig.h</itemPath>
+      <itemPath>Main.h</itemPath>
+      <itemPath>image_dropp/GDD_Screens.h</itemPath>
+      <itemPath>image_dropp/GDD_Resource.h</itemPath>
+      <itemPath>image_dropp/GDD_GraphicsConfig.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -19,6 +85,64 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <logicalFolder name="BoardSupportPackage"
+                     displayName="BoardSupportPackage"
+                     projectFiles="true">
+        <itemPath>../Board Support Package/TouchScreen.c</itemPath>
+        <itemPath>../Board Support Package/TouchScreenAR1020.c</itemPath>
+        <itemPath>../Board Support Package/TouchScreenResistive.c</itemPath>
+        <itemPath>../Board Support Package/Beep.c</itemPath>
+        <itemPath>../Board Support Package/SST25VF016.c</itemPath>
+        <itemPath>../Board Support Package/cpld.c</itemPath>
+        <itemPath>../Board Support Package/drv_spi.c</itemPath>
+        <itemPath>../Board Support Package/SST39LF400.c</itemPath>
+        <itemPath>../Board Support Package/SST39VF040.c</itemPath>
+        <itemPath>../Board Support Package/MCHP25LC256.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Common" displayName="Common" projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="Drivers" displayName="Drivers" projectFiles="true">
+        <itemPath>../Microchip/Graphics/Drivers/gfxepmp.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/mchpGfxDrv.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/mchpGfxLCC.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/TCON_Custom.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/TCON_HX8238.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/TCON_HX8257.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/TCON_SSD1289.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/drvTFT001.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/drvTFT002.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/HIT1270.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/HX8347.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/S1D13517.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/SH1101A_SSD1303.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/SSD1339.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/SSD1926.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/ST7529.c</itemPath>
+        <itemPath>../Microchip/Graphics/Drivers/UC1610.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="Graphics" displayName="Graphics" projectFiles="true">
+        <itemPath>../Microchip/Graphics/GOL.c</itemPath>
+        <itemPath>../Microchip/Graphics/GOLFontDefault.c</itemPath>
+        <itemPath>../Microchip/Graphics/GOLSchemeDefault.c</itemPath>
+        <itemPath>../Microchip/Graphics/Palette.c</itemPath>
+        <itemPath>../Microchip/Graphics/Primitive.c</itemPath>
+        <itemPath>../Microchip/Graphics/Button.c</itemPath>
+        <itemPath>../Microchip/Graphics/CheckBox.c</itemPath>
+        <itemPath>../Microchip/Graphics/Meter.c</itemPath>
+        <itemPath>../Microchip/Graphics/DigitalMeter.c</itemPath>
+        <itemPath>../Microchip/Graphics/Chart.c</itemPath>
+        <itemPath>../Microchip/Graphics/RadioButton.c</itemPath>
+        <itemPath>../Microchip/Graphics/ListBox.c</itemPath>
+        <itemPath>../Microchip/Graphics/GroupBox.c</itemPath>
+        <itemPath>../Microchip/Graphics/EditBox.c</itemPath>
+        <itemPath>../Microchip/Graphics/Window.c</itemPath>
+        <itemPath>../Microchip/Graphics/Slider.c</itemPath>
+        <itemPath>../Microchip/Graphics/StaticText.c</itemPath>
+        <itemPath>../Microchip/Graphics/RoundDial.c</itemPath>
+        <itemPath>../Microchip/Graphics/Picture.c</itemPath>
+        <itemPath>../Microchip/Graphics/ProgressBar.c</itemPath>
+        <itemPath>../Microchip/Graphics/TextEntry.c</itemPath>
+      </logicalFolder>
       <itemPath>configuration_bits.c</itemPath>
       <itemPath>exceptions.c</itemPath>
       <itemPath>interrupts.c</itemPath>
@@ -27,6 +151,9 @@
       <itemPath>user.c</itemPath>
       <itemPath>Primitives LLD/TimeDelay.c</itemPath>
       <itemPath>Primitives LLD/SSD1963.c</itemPath>
+      <itemPath>image_dropp/GDD_Screens.c</itemPath>
+      <itemPath>image_dropp/GDD_Resource.c</itemPath>
+      <itemPath>image_dropp/GDD_X_Event_Handler.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -166,7 +293,8 @@
         <property key="enable-symbols" value="true"/>
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
-        <property key="extra-include-directories" value=""/>
+        <property key="extra-include-directories"
+                  value="../Board Support Package;../Microchip/Include;../Microchip/Include/Graphics;.;image_dropp"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="false"/>

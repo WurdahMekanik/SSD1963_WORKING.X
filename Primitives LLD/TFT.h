@@ -78,7 +78,6 @@
 	#define LCD_SPDAT	0
 	/* End of definition for TY430TFT480272 */
 
-
 #elif (DISPLAY_PANEL == TY500TFT800480)
 	/*
 	*********************************************************************
