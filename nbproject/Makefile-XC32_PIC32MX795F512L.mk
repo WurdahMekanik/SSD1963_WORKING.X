@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=configuration_bits.c exceptions.c interrupts.c main.c system.c user.c "Primitives LLD/TimeDelay.c" "Primitives LLD/SSD1963.c" "../Board Support Package/TouchScreen.c" "../Board Support Package/TouchScreenAR1020.c" "../Board Support Package/TouchScreenResistive.c" "../Board Support Package/Beep.c" "../Board Support Package/SST25VF016.c" "../Board Support Package/cpld.c" "../Board Support Package/drv_spi.c" "../Board Support Package/SST39LF400.c" "../Board Support Package/SST39VF040.c" "../Board Support Package/MCHP25LC256.c" ../Microchip/Graphics/Drivers/gfxepmp.c ../Microchip/Graphics/Drivers/mchpGfxDrv.c ../Microchip/Graphics/Drivers/mchpGfxLCC.c ../Microchip/Graphics/Drivers/TCON_Custom.c ../Microchip/Graphics/Drivers/TCON_HX8238.c ../Microchip/Graphics/Drivers/TCON_HX8257.c ../Microchip/Graphics/Drivers/TCON_SSD1289.c ../Microchip/Graphics/Drivers/drvTFT001.c ../Microchip/Graphics/Drivers/drvTFT002.c ../Microchip/Graphics/Drivers/HIT1270.c ../Microchip/Graphics/Drivers/HX8347.c ../Microchip/Graphics/Drivers/S1D13517.c ../Microchip/Graphics/Drivers/SH1101A_SSD1303.c ../Microchip/Graphics/Drivers/SSD1339.c ../Microchip/Graphics/Drivers/SSD1926.c ../Microchip/Graphics/Drivers/ST7529.c ../Microchip/Graphics/Drivers/UC1610.c ../Microchip/Graphics/GOL.c ../Microchip/Graphics/GOLFontDefault.c ../Microchip/Graphics/GOLSchemeDefault.c ../Microchip/Graphics/Palette.c ../Microchip/Graphics/Primitive.c ../Microchip/Graphics/Button.c ../Microchip/Graphics/CheckBox.c ../Microchip/Graphics/Meter.c ../Microchip/Graphics/DigitalMeter.c ../Microchip/Graphics/Chart.c ../Microchip/Graphics/RadioButton.c ../Microchip/Graphics/ListBox.c ../Microchip/Graphics/GroupBox.c ../Microchip/Graphics/EditBox.c ../Microchip/Graphics/Window.c ../Microchip/Graphics/Slider.c ../Microchip/Graphics/StaticText.c ../Microchip/Graphics/RoundDial.c ../Microchip/Graphics/Picture.c ../Microchip/Graphics/ProgressBar.c ../Microchip/Graphics/TextEntry.c image_dropp/GDD_Screens.c image_dropp/GDD_Resource.c image_dropp/GDD_X_Event_Handler.c
+SOURCEFILES_QUOTED_IF_SPACED="../Board Support Package/TouchScreen.c" "../Board Support Package/TouchScreenAR1020.c" "../Board Support Package/TouchScreenResistive.c" "../Board Support Package/Beep.c" "../Board Support Package/SST25VF016.c" "../Board Support Package/cpld.c" "../Board Support Package/drv_spi.c" "../Board Support Package/SST39LF400.c" "../Board Support Package/SST39VF040.c" "../Board Support Package/MCHP25LC256.c" ../Microchip/Graphics/Drivers/gfxepmp.c ../Microchip/Graphics/Drivers/mchpGfxDrv.c ../Microchip/Graphics/Drivers/mchpGfxLCC.c ../Microchip/Graphics/Drivers/TCON_Custom.c ../Microchip/Graphics/Drivers/TCON_HX8238.c ../Microchip/Graphics/Drivers/TCON_HX8257.c ../Microchip/Graphics/Drivers/TCON_SSD1289.c ../Microchip/Graphics/Drivers/drvTFT001.c ../Microchip/Graphics/Drivers/drvTFT002.c ../Microchip/Graphics/Drivers/HIT1270.c ../Microchip/Graphics/Drivers/HX8347.c ../Microchip/Graphics/Drivers/S1D13517.c ../Microchip/Graphics/Drivers/SH1101A_SSD1303.c ../Microchip/Graphics/Drivers/SSD1339.c ../Microchip/Graphics/Drivers/SSD1926.c ../Microchip/Graphics/Drivers/ST7529.c ../Microchip/Graphics/Drivers/UC1610.c ../Microchip/Graphics/GOL.c ../Microchip/Graphics/GOLFontDefault.c ../Microchip/Graphics/GOLSchemeDefault.c ../Microchip/Graphics/Palette.c ../Microchip/Graphics/Primitive.c ../Microchip/Graphics/Button.c ../Microchip/Graphics/CheckBox.c ../Microchip/Graphics/Meter.c ../Microchip/Graphics/DigitalMeter.c ../Microchip/Graphics/Chart.c ../Microchip/Graphics/RadioButton.c ../Microchip/Graphics/ListBox.c ../Microchip/Graphics/GroupBox.c ../Microchip/Graphics/EditBox.c ../Microchip/Graphics/Window.c ../Microchip/Graphics/Slider.c ../Microchip/Graphics/StaticText.c ../Microchip/Graphics/RoundDial.c ../Microchip/Graphics/Picture.c ../Microchip/Graphics/ProgressBar.c ../Microchip/Graphics/TextEntry.c configuration_bits.c exceptions.c interrupts.c main.c system.c user.c "Primitives LLD/TimeDelay.c" "Primitives LLD/SSD1963.c" image_dropp/GDD_Screens.c image_dropp/GDD_Resource.c image_dropp/GDD_X_Event_Handler.c image_dropp/resource/newABIDlock.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/configuration_bits.o ${OBJECTDIR}/exceptions.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/system.o ${OBJECTDIR}/user.o "${OBJECTDIR}/Primitives LLD/TimeDelay.o" "${OBJECTDIR}/Primitives LLD/SSD1963.o" ${OBJECTDIR}/_ext/215660468/TouchScreen.o ${OBJECTDIR}/_ext/215660468/TouchScreenAR1020.o ${OBJECTDIR}/_ext/215660468/TouchScreenResistive.o ${OBJECTDIR}/_ext/215660468/Beep.o ${OBJECTDIR}/_ext/215660468/SST25VF016.o ${OBJECTDIR}/_ext/215660468/cpld.o ${OBJECTDIR}/_ext/215660468/drv_spi.o ${OBJECTDIR}/_ext/215660468/SST39LF400.o ${OBJECTDIR}/_ext/215660468/SST39VF040.o ${OBJECTDIR}/_ext/215660468/MCHP25LC256.o ${OBJECTDIR}/_ext/1575306571/gfxepmp.o ${OBJECTDIR}/_ext/1575306571/mchpGfxDrv.o ${OBJECTDIR}/_ext/1575306571/mchpGfxLCC.o ${OBJECTDIR}/_ext/1575306571/TCON_Custom.o ${OBJECTDIR}/_ext/1575306571/TCON_HX8238.o ${OBJECTDIR}/_ext/1575306571/TCON_HX8257.o ${OBJECTDIR}/_ext/1575306571/TCON_SSD1289.o ${OBJECTDIR}/_ext/1575306571/drvTFT001.o ${OBJECTDIR}/_ext/1575306571/drvTFT002.o ${OBJECTDIR}/_ext/1575306571/HIT1270.o ${OBJECTDIR}/_ext/1575306571/HX8347.o ${OBJECTDIR}/_ext/1575306571/S1D13517.o ${OBJECTDIR}/_ext/1575306571/SH1101A_SSD1303.o ${OBJECTDIR}/_ext/1575306571/SSD1339.o ${OBJECTDIR}/_ext/1575306571/SSD1926.o ${OBJECTDIR}/_ext/1575306571/ST7529.o ${OBJECTDIR}/_ext/1575306571/UC1610.o ${OBJECTDIR}/_ext/1713430119/GOL.o ${OBJECTDIR}/_ext/1713430119/GOLFontDefault.o ${OBJECTDIR}/_ext/1713430119/GOLSchemeDefault.o ${OBJECTDIR}/_ext/1713430119/Palette.o ${OBJECTDIR}/_ext/1713430119/Primitive.o ${OBJECTDIR}/_ext/1713430119/Button.o ${OBJECTDIR}/_ext/1713430119/CheckBox.o ${OBJECTDIR}/_ext/1713430119/Meter.o ${OBJECTDIR}/_ext/1713430119/DigitalMeter.o ${OBJECTDIR}/_ext/1713430119/Chart.o ${OBJECTDIR}/_ext/1713430119/RadioButton.o ${OBJECTDIR}/_ext/1713430119/ListBox.o ${OBJECTDIR}/_ext/1713430119/GroupBox.o ${OBJECTDIR}/_ext/1713430119/EditBox.o ${OBJECTDIR}/_ext/1713430119/Window.o ${OBJECTDIR}/_ext/1713430119/Slider.o ${OBJECTDIR}/_ext/1713430119/StaticText.o ${OBJECTDIR}/_ext/1713430119/RoundDial.o ${OBJECTDIR}/_ext/1713430119/Picture.o ${OBJECTDIR}/_ext/1713430119/ProgressBar.o ${OBJECTDIR}/_ext/1713430119/TextEntry.o ${OBJECTDIR}/image_dropp/GDD_Screens.o ${OBJECTDIR}/image_dropp/GDD_Resource.o ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/configuration_bits.o.d ${OBJECTDIR}/exceptions.o.d ${OBJECTDIR}/interrupts.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/system.o.d ${OBJECTDIR}/user.o.d "${OBJECTDIR}/Primitives LLD/TimeDelay.o.d" "${OBJECTDIR}/Primitives LLD/SSD1963.o.d" ${OBJECTDIR}/_ext/215660468/TouchScreen.o.d ${OBJECTDIR}/_ext/215660468/TouchScreenAR1020.o.d ${OBJECTDIR}/_ext/215660468/TouchScreenResistive.o.d ${OBJECTDIR}/_ext/215660468/Beep.o.d ${OBJECTDIR}/_ext/215660468/SST25VF016.o.d ${OBJECTDIR}/_ext/215660468/cpld.o.d ${OBJECTDIR}/_ext/215660468/drv_spi.o.d ${OBJECTDIR}/_ext/215660468/SST39LF400.o.d ${OBJECTDIR}/_ext/215660468/SST39VF040.o.d ${OBJECTDIR}/_ext/215660468/MCHP25LC256.o.d ${OBJECTDIR}/_ext/1575306571/gfxepmp.o.d ${OBJECTDIR}/_ext/1575306571/mchpGfxDrv.o.d ${OBJECTDIR}/_ext/1575306571/mchpGfxLCC.o.d ${OBJECTDIR}/_ext/1575306571/TCON_Custom.o.d ${OBJECTDIR}/_ext/1575306571/TCON_HX8238.o.d ${OBJECTDIR}/_ext/1575306571/TCON_HX8257.o.d ${OBJECTDIR}/_ext/1575306571/TCON_SSD1289.o.d ${OBJECTDIR}/_ext/1575306571/drvTFT001.o.d ${OBJECTDIR}/_ext/1575306571/drvTFT002.o.d ${OBJECTDIR}/_ext/1575306571/HIT1270.o.d ${OBJECTDIR}/_ext/1575306571/HX8347.o.d ${OBJECTDIR}/_ext/1575306571/S1D13517.o.d ${OBJECTDIR}/_ext/1575306571/SH1101A_SSD1303.o.d ${OBJECTDIR}/_ext/1575306571/SSD1339.o.d ${OBJECTDIR}/_ext/1575306571/SSD1926.o.d ${OBJECTDIR}/_ext/1575306571/ST7529.o.d ${OBJECTDIR}/_ext/1575306571/UC1610.o.d ${OBJECTDIR}/_ext/1713430119/GOL.o.d ${OBJECTDIR}/_ext/1713430119/GOLFontDefault.o.d ${OBJECTDIR}/_ext/1713430119/GOLSchemeDefault.o.d ${OBJECTDIR}/_ext/1713430119/Palette.o.d ${OBJECTDIR}/_ext/1713430119/Primitive.o.d ${OBJECTDIR}/_ext/1713430119/Button.o.d ${OBJECTDIR}/_ext/1713430119/CheckBox.o.d ${OBJECTDIR}/_ext/1713430119/Meter.o.d ${OBJECTDIR}/_ext/1713430119/DigitalMeter.o.d ${OBJECTDIR}/_ext/1713430119/Chart.o.d ${OBJECTDIR}/_ext/1713430119/RadioButton.o.d ${OBJECTDIR}/_ext/1713430119/ListBox.o.d ${OBJECTDIR}/_ext/1713430119/GroupBox.o.d ${OBJECTDIR}/_ext/1713430119/EditBox.o.d ${OBJECTDIR}/_ext/1713430119/Window.o.d ${OBJECTDIR}/_ext/1713430119/Slider.o.d ${OBJECTDIR}/_ext/1713430119/StaticText.o.d ${OBJECTDIR}/_ext/1713430119/RoundDial.o.d ${OBJECTDIR}/_ext/1713430119/Picture.o.d ${OBJECTDIR}/_ext/1713430119/ProgressBar.o.d ${OBJECTDIR}/_ext/1713430119/TextEntry.o.d ${OBJECTDIR}/image_dropp/GDD_Screens.o.d ${OBJECTDIR}/image_dropp/GDD_Resource.o.d ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/_ext/215660468/TouchScreen.o ${OBJECTDIR}/_ext/215660468/TouchScreenAR1020.o ${OBJECTDIR}/_ext/215660468/TouchScreenResistive.o ${OBJECTDIR}/_ext/215660468/Beep.o ${OBJECTDIR}/_ext/215660468/SST25VF016.o ${OBJECTDIR}/_ext/215660468/cpld.o ${OBJECTDIR}/_ext/215660468/drv_spi.o ${OBJECTDIR}/_ext/215660468/SST39LF400.o ${OBJECTDIR}/_ext/215660468/SST39VF040.o ${OBJECTDIR}/_ext/215660468/MCHP25LC256.o ${OBJECTDIR}/_ext/1575306571/gfxepmp.o ${OBJECTDIR}/_ext/1575306571/mchpGfxDrv.o ${OBJECTDIR}/_ext/1575306571/mchpGfxLCC.o ${OBJECTDIR}/_ext/1575306571/TCON_Custom.o ${OBJECTDIR}/_ext/1575306571/TCON_HX8238.o ${OBJECTDIR}/_ext/1575306571/TCON_HX8257.o ${OBJECTDIR}/_ext/1575306571/TCON_SSD1289.o ${OBJECTDIR}/_ext/1575306571/drvTFT001.o ${OBJECTDIR}/_ext/1575306571/drvTFT002.o ${OBJECTDIR}/_ext/1575306571/HIT1270.o ${OBJECTDIR}/_ext/1575306571/HX8347.o ${OBJECTDIR}/_ext/1575306571/S1D13517.o ${OBJECTDIR}/_ext/1575306571/SH1101A_SSD1303.o ${OBJECTDIR}/_ext/1575306571/SSD1339.o ${OBJECTDIR}/_ext/1575306571/SSD1926.o ${OBJECTDIR}/_ext/1575306571/ST7529.o ${OBJECTDIR}/_ext/1575306571/UC1610.o ${OBJECTDIR}/_ext/1713430119/GOL.o ${OBJECTDIR}/_ext/1713430119/GOLFontDefault.o ${OBJECTDIR}/_ext/1713430119/GOLSchemeDefault.o ${OBJECTDIR}/_ext/1713430119/Palette.o ${OBJECTDIR}/_ext/1713430119/Primitive.o ${OBJECTDIR}/_ext/1713430119/Button.o ${OBJECTDIR}/_ext/1713430119/CheckBox.o ${OBJECTDIR}/_ext/1713430119/Meter.o ${OBJECTDIR}/_ext/1713430119/DigitalMeter.o ${OBJECTDIR}/_ext/1713430119/Chart.o ${OBJECTDIR}/_ext/1713430119/RadioButton.o ${OBJECTDIR}/_ext/1713430119/ListBox.o ${OBJECTDIR}/_ext/1713430119/GroupBox.o ${OBJECTDIR}/_ext/1713430119/EditBox.o ${OBJECTDIR}/_ext/1713430119/Window.o ${OBJECTDIR}/_ext/1713430119/Slider.o ${OBJECTDIR}/_ext/1713430119/StaticText.o ${OBJECTDIR}/_ext/1713430119/RoundDial.o ${OBJECTDIR}/_ext/1713430119/Picture.o ${OBJECTDIR}/_ext/1713430119/ProgressBar.o ${OBJECTDIR}/_ext/1713430119/TextEntry.o ${OBJECTDIR}/configuration_bits.o ${OBJECTDIR}/exceptions.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/system.o ${OBJECTDIR}/user.o "${OBJECTDIR}/Primitives LLD/TimeDelay.o" "${OBJECTDIR}/Primitives LLD/SSD1963.o" ${OBJECTDIR}/image_dropp/GDD_Screens.o ${OBJECTDIR}/image_dropp/GDD_Resource.o ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o ${OBJECTDIR}/image_dropp/resource/newABIDlock.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/_ext/215660468/TouchScreen.o.d ${OBJECTDIR}/_ext/215660468/TouchScreenAR1020.o.d ${OBJECTDIR}/_ext/215660468/TouchScreenResistive.o.d ${OBJECTDIR}/_ext/215660468/Beep.o.d ${OBJECTDIR}/_ext/215660468/SST25VF016.o.d ${OBJECTDIR}/_ext/215660468/cpld.o.d ${OBJECTDIR}/_ext/215660468/drv_spi.o.d ${OBJECTDIR}/_ext/215660468/SST39LF400.o.d ${OBJECTDIR}/_ext/215660468/SST39VF040.o.d ${OBJECTDIR}/_ext/215660468/MCHP25LC256.o.d ${OBJECTDIR}/_ext/1575306571/gfxepmp.o.d ${OBJECTDIR}/_ext/1575306571/mchpGfxDrv.o.d ${OBJECTDIR}/_ext/1575306571/mchpGfxLCC.o.d ${OBJECTDIR}/_ext/1575306571/TCON_Custom.o.d ${OBJECTDIR}/_ext/1575306571/TCON_HX8238.o.d ${OBJECTDIR}/_ext/1575306571/TCON_HX8257.o.d ${OBJECTDIR}/_ext/1575306571/TCON_SSD1289.o.d ${OBJECTDIR}/_ext/1575306571/drvTFT001.o.d ${OBJECTDIR}/_ext/1575306571/drvTFT002.o.d ${OBJECTDIR}/_ext/1575306571/HIT1270.o.d ${OBJECTDIR}/_ext/1575306571/HX8347.o.d ${OBJECTDIR}/_ext/1575306571/S1D13517.o.d ${OBJECTDIR}/_ext/1575306571/SH1101A_SSD1303.o.d ${OBJECTDIR}/_ext/1575306571/SSD1339.o.d ${OBJECTDIR}/_ext/1575306571/SSD1926.o.d ${OBJECTDIR}/_ext/1575306571/ST7529.o.d ${OBJECTDIR}/_ext/1575306571/UC1610.o.d ${OBJECTDIR}/_ext/1713430119/GOL.o.d ${OBJECTDIR}/_ext/1713430119/GOLFontDefault.o.d ${OBJECTDIR}/_ext/1713430119/GOLSchemeDefault.o.d ${OBJECTDIR}/_ext/1713430119/Palette.o.d ${OBJECTDIR}/_ext/1713430119/Primitive.o.d ${OBJECTDIR}/_ext/1713430119/Button.o.d ${OBJECTDIR}/_ext/1713430119/CheckBox.o.d ${OBJECTDIR}/_ext/1713430119/Meter.o.d ${OBJECTDIR}/_ext/1713430119/DigitalMeter.o.d ${OBJECTDIR}/_ext/1713430119/Chart.o.d ${OBJECTDIR}/_ext/1713430119/RadioButton.o.d ${OBJECTDIR}/_ext/1713430119/ListBox.o.d ${OBJECTDIR}/_ext/1713430119/GroupBox.o.d ${OBJECTDIR}/_ext/1713430119/EditBox.o.d ${OBJECTDIR}/_ext/1713430119/Window.o.d ${OBJECTDIR}/_ext/1713430119/Slider.o.d ${OBJECTDIR}/_ext/1713430119/StaticText.o.d ${OBJECTDIR}/_ext/1713430119/RoundDial.o.d ${OBJECTDIR}/_ext/1713430119/Picture.o.d ${OBJECTDIR}/_ext/1713430119/ProgressBar.o.d ${OBJECTDIR}/_ext/1713430119/TextEntry.o.d ${OBJECTDIR}/configuration_bits.o.d ${OBJECTDIR}/exceptions.o.d ${OBJECTDIR}/interrupts.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/system.o.d ${OBJECTDIR}/user.o.d "${OBJECTDIR}/Primitives LLD/TimeDelay.o.d" "${OBJECTDIR}/Primitives LLD/SSD1963.o.d" ${OBJECTDIR}/image_dropp/GDD_Screens.o.d ${OBJECTDIR}/image_dropp/GDD_Resource.o.d ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o.d ${OBJECTDIR}/image_dropp/resource/newABIDlock.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/configuration_bits.o ${OBJECTDIR}/exceptions.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/system.o ${OBJECTDIR}/user.o ${OBJECTDIR}/Primitives\ LLD/TimeDelay.o ${OBJECTDIR}/Primitives\ LLD/SSD1963.o ${OBJECTDIR}/_ext/215660468/TouchScreen.o ${OBJECTDIR}/_ext/215660468/TouchScreenAR1020.o ${OBJECTDIR}/_ext/215660468/TouchScreenResistive.o ${OBJECTDIR}/_ext/215660468/Beep.o ${OBJECTDIR}/_ext/215660468/SST25VF016.o ${OBJECTDIR}/_ext/215660468/cpld.o ${OBJECTDIR}/_ext/215660468/drv_spi.o ${OBJECTDIR}/_ext/215660468/SST39LF400.o ${OBJECTDIR}/_ext/215660468/SST39VF040.o ${OBJECTDIR}/_ext/215660468/MCHP25LC256.o ${OBJECTDIR}/_ext/1575306571/gfxepmp.o ${OBJECTDIR}/_ext/1575306571/mchpGfxDrv.o ${OBJECTDIR}/_ext/1575306571/mchpGfxLCC.o ${OBJECTDIR}/_ext/1575306571/TCON_Custom.o ${OBJECTDIR}/_ext/1575306571/TCON_HX8238.o ${OBJECTDIR}/_ext/1575306571/TCON_HX8257.o ${OBJECTDIR}/_ext/1575306571/TCON_SSD1289.o ${OBJECTDIR}/_ext/1575306571/drvTFT001.o ${OBJECTDIR}/_ext/1575306571/drvTFT002.o ${OBJECTDIR}/_ext/1575306571/HIT1270.o ${OBJECTDIR}/_ext/1575306571/HX8347.o ${OBJECTDIR}/_ext/1575306571/S1D13517.o ${OBJECTDIR}/_ext/1575306571/SH1101A_SSD1303.o ${OBJECTDIR}/_ext/1575306571/SSD1339.o ${OBJECTDIR}/_ext/1575306571/SSD1926.o ${OBJECTDIR}/_ext/1575306571/ST7529.o ${OBJECTDIR}/_ext/1575306571/UC1610.o ${OBJECTDIR}/_ext/1713430119/GOL.o ${OBJECTDIR}/_ext/1713430119/GOLFontDefault.o ${OBJECTDIR}/_ext/1713430119/GOLSchemeDefault.o ${OBJECTDIR}/_ext/1713430119/Palette.o ${OBJECTDIR}/_ext/1713430119/Primitive.o ${OBJECTDIR}/_ext/1713430119/Button.o ${OBJECTDIR}/_ext/1713430119/CheckBox.o ${OBJECTDIR}/_ext/1713430119/Meter.o ${OBJECTDIR}/_ext/1713430119/DigitalMeter.o ${OBJECTDIR}/_ext/1713430119/Chart.o ${OBJECTDIR}/_ext/1713430119/RadioButton.o ${OBJECTDIR}/_ext/1713430119/ListBox.o ${OBJECTDIR}/_ext/1713430119/GroupBox.o ${OBJECTDIR}/_ext/1713430119/EditBox.o ${OBJECTDIR}/_ext/1713430119/Window.o ${OBJECTDIR}/_ext/1713430119/Slider.o ${OBJECTDIR}/_ext/1713430119/StaticText.o ${OBJECTDIR}/_ext/1713430119/RoundDial.o ${OBJECTDIR}/_ext/1713430119/Picture.o ${OBJECTDIR}/_ext/1713430119/ProgressBar.o ${OBJECTDIR}/_ext/1713430119/TextEntry.o ${OBJECTDIR}/image_dropp/GDD_Screens.o ${OBJECTDIR}/image_dropp/GDD_Resource.o ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o
+OBJECTFILES=${OBJECTDIR}/_ext/215660468/TouchScreen.o ${OBJECTDIR}/_ext/215660468/TouchScreenAR1020.o ${OBJECTDIR}/_ext/215660468/TouchScreenResistive.o ${OBJECTDIR}/_ext/215660468/Beep.o ${OBJECTDIR}/_ext/215660468/SST25VF016.o ${OBJECTDIR}/_ext/215660468/cpld.o ${OBJECTDIR}/_ext/215660468/drv_spi.o ${OBJECTDIR}/_ext/215660468/SST39LF400.o ${OBJECTDIR}/_ext/215660468/SST39VF040.o ${OBJECTDIR}/_ext/215660468/MCHP25LC256.o ${OBJECTDIR}/_ext/1575306571/gfxepmp.o ${OBJECTDIR}/_ext/1575306571/mchpGfxDrv.o ${OBJECTDIR}/_ext/1575306571/mchpGfxLCC.o ${OBJECTDIR}/_ext/1575306571/TCON_Custom.o ${OBJECTDIR}/_ext/1575306571/TCON_HX8238.o ${OBJECTDIR}/_ext/1575306571/TCON_HX8257.o ${OBJECTDIR}/_ext/1575306571/TCON_SSD1289.o ${OBJECTDIR}/_ext/1575306571/drvTFT001.o ${OBJECTDIR}/_ext/1575306571/drvTFT002.o ${OBJECTDIR}/_ext/1575306571/HIT1270.o ${OBJECTDIR}/_ext/1575306571/HX8347.o ${OBJECTDIR}/_ext/1575306571/S1D13517.o ${OBJECTDIR}/_ext/1575306571/SH1101A_SSD1303.o ${OBJECTDIR}/_ext/1575306571/SSD1339.o ${OBJECTDIR}/_ext/1575306571/SSD1926.o ${OBJECTDIR}/_ext/1575306571/ST7529.o ${OBJECTDIR}/_ext/1575306571/UC1610.o ${OBJECTDIR}/_ext/1713430119/GOL.o ${OBJECTDIR}/_ext/1713430119/GOLFontDefault.o ${OBJECTDIR}/_ext/1713430119/GOLSchemeDefault.o ${OBJECTDIR}/_ext/1713430119/Palette.o ${OBJECTDIR}/_ext/1713430119/Primitive.o ${OBJECTDIR}/_ext/1713430119/Button.o ${OBJECTDIR}/_ext/1713430119/CheckBox.o ${OBJECTDIR}/_ext/1713430119/Meter.o ${OBJECTDIR}/_ext/1713430119/DigitalMeter.o ${OBJECTDIR}/_ext/1713430119/Chart.o ${OBJECTDIR}/_ext/1713430119/RadioButton.o ${OBJECTDIR}/_ext/1713430119/ListBox.o ${OBJECTDIR}/_ext/1713430119/GroupBox.o ${OBJECTDIR}/_ext/1713430119/EditBox.o ${OBJECTDIR}/_ext/1713430119/Window.o ${OBJECTDIR}/_ext/1713430119/Slider.o ${OBJECTDIR}/_ext/1713430119/StaticText.o ${OBJECTDIR}/_ext/1713430119/RoundDial.o ${OBJECTDIR}/_ext/1713430119/Picture.o ${OBJECTDIR}/_ext/1713430119/ProgressBar.o ${OBJECTDIR}/_ext/1713430119/TextEntry.o ${OBJECTDIR}/configuration_bits.o ${OBJECTDIR}/exceptions.o ${OBJECTDIR}/interrupts.o ${OBJECTDIR}/main.o ${OBJECTDIR}/system.o ${OBJECTDIR}/user.o ${OBJECTDIR}/Primitives\ LLD/TimeDelay.o ${OBJECTDIR}/Primitives\ LLD/SSD1963.o ${OBJECTDIR}/image_dropp/GDD_Screens.o ${OBJECTDIR}/image_dropp/GDD_Resource.o ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o ${OBJECTDIR}/image_dropp/resource/newABIDlock.o
 
 # Source Files
-SOURCEFILES=configuration_bits.c exceptions.c interrupts.c main.c system.c user.c Primitives LLD/TimeDelay.c Primitives LLD/SSD1963.c ../Board Support Package/TouchScreen.c ../Board Support Package/TouchScreenAR1020.c ../Board Support Package/TouchScreenResistive.c ../Board Support Package/Beep.c ../Board Support Package/SST25VF016.c ../Board Support Package/cpld.c ../Board Support Package/drv_spi.c ../Board Support Package/SST39LF400.c ../Board Support Package/SST39VF040.c ../Board Support Package/MCHP25LC256.c ../Microchip/Graphics/Drivers/gfxepmp.c ../Microchip/Graphics/Drivers/mchpGfxDrv.c ../Microchip/Graphics/Drivers/mchpGfxLCC.c ../Microchip/Graphics/Drivers/TCON_Custom.c ../Microchip/Graphics/Drivers/TCON_HX8238.c ../Microchip/Graphics/Drivers/TCON_HX8257.c ../Microchip/Graphics/Drivers/TCON_SSD1289.c ../Microchip/Graphics/Drivers/drvTFT001.c ../Microchip/Graphics/Drivers/drvTFT002.c ../Microchip/Graphics/Drivers/HIT1270.c ../Microchip/Graphics/Drivers/HX8347.c ../Microchip/Graphics/Drivers/S1D13517.c ../Microchip/Graphics/Drivers/SH1101A_SSD1303.c ../Microchip/Graphics/Drivers/SSD1339.c ../Microchip/Graphics/Drivers/SSD1926.c ../Microchip/Graphics/Drivers/ST7529.c ../Microchip/Graphics/Drivers/UC1610.c ../Microchip/Graphics/GOL.c ../Microchip/Graphics/GOLFontDefault.c ../Microchip/Graphics/GOLSchemeDefault.c ../Microchip/Graphics/Palette.c ../Microchip/Graphics/Primitive.c ../Microchip/Graphics/Button.c ../Microchip/Graphics/CheckBox.c ../Microchip/Graphics/Meter.c ../Microchip/Graphics/DigitalMeter.c ../Microchip/Graphics/Chart.c ../Microchip/Graphics/RadioButton.c ../Microchip/Graphics/ListBox.c ../Microchip/Graphics/GroupBox.c ../Microchip/Graphics/EditBox.c ../Microchip/Graphics/Window.c ../Microchip/Graphics/Slider.c ../Microchip/Graphics/StaticText.c ../Microchip/Graphics/RoundDial.c ../Microchip/Graphics/Picture.c ../Microchip/Graphics/ProgressBar.c ../Microchip/Graphics/TextEntry.c image_dropp/GDD_Screens.c image_dropp/GDD_Resource.c image_dropp/GDD_X_Event_Handler.c
+SOURCEFILES=../Board Support Package/TouchScreen.c ../Board Support Package/TouchScreenAR1020.c ../Board Support Package/TouchScreenResistive.c ../Board Support Package/Beep.c ../Board Support Package/SST25VF016.c ../Board Support Package/cpld.c ../Board Support Package/drv_spi.c ../Board Support Package/SST39LF400.c ../Board Support Package/SST39VF040.c ../Board Support Package/MCHP25LC256.c ../Microchip/Graphics/Drivers/gfxepmp.c ../Microchip/Graphics/Drivers/mchpGfxDrv.c ../Microchip/Graphics/Drivers/mchpGfxLCC.c ../Microchip/Graphics/Drivers/TCON_Custom.c ../Microchip/Graphics/Drivers/TCON_HX8238.c ../Microchip/Graphics/Drivers/TCON_HX8257.c ../Microchip/Graphics/Drivers/TCON_SSD1289.c ../Microchip/Graphics/Drivers/drvTFT001.c ../Microchip/Graphics/Drivers/drvTFT002.c ../Microchip/Graphics/Drivers/HIT1270.c ../Microchip/Graphics/Drivers/HX8347.c ../Microchip/Graphics/Drivers/S1D13517.c ../Microchip/Graphics/Drivers/SH1101A_SSD1303.c ../Microchip/Graphics/Drivers/SSD1339.c ../Microchip/Graphics/Drivers/SSD1926.c ../Microchip/Graphics/Drivers/ST7529.c ../Microchip/Graphics/Drivers/UC1610.c ../Microchip/Graphics/GOL.c ../Microchip/Graphics/GOLFontDefault.c ../Microchip/Graphics/GOLSchemeDefault.c ../Microchip/Graphics/Palette.c ../Microchip/Graphics/Primitive.c ../Microchip/Graphics/Button.c ../Microchip/Graphics/CheckBox.c ../Microchip/Graphics/Meter.c ../Microchip/Graphics/DigitalMeter.c ../Microchip/Graphics/Chart.c ../Microchip/Graphics/RadioButton.c ../Microchip/Graphics/ListBox.c ../Microchip/Graphics/GroupBox.c ../Microchip/Graphics/EditBox.c ../Microchip/Graphics/Window.c ../Microchip/Graphics/Slider.c ../Microchip/Graphics/StaticText.c ../Microchip/Graphics/RoundDial.c ../Microchip/Graphics/Picture.c ../Microchip/Graphics/ProgressBar.c ../Microchip/Graphics/TextEntry.c configuration_bits.c exceptions.c interrupts.c main.c system.c user.c Primitives LLD/TimeDelay.c Primitives LLD/SSD1963.c image_dropp/GDD_Screens.c image_dropp/GDD_Resource.c image_dropp/GDD_X_Event_Handler.c image_dropp/resource/newABIDlock.c
 
 
 CFLAGS=
@@ -91,54 +91,6 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/configuration_bits.o: configuration_bits.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/configuration_bits.o.d 
-	@${RM} ${OBJECTDIR}/configuration_bits.o 
-	@${FIXDEPS} "${OBJECTDIR}/configuration_bits.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/configuration_bits.o.d" -o ${OBJECTDIR}/configuration_bits.o configuration_bits.c   
-	
-${OBJECTDIR}/exceptions.o: exceptions.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/exceptions.o.d 
-	@${RM} ${OBJECTDIR}/exceptions.o 
-	@${FIXDEPS} "${OBJECTDIR}/exceptions.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/exceptions.o.d" -o ${OBJECTDIR}/exceptions.o exceptions.c   
-	
-${OBJECTDIR}/interrupts.o: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/interrupts.o.d 
-	@${RM} ${OBJECTDIR}/interrupts.o 
-	@${FIXDEPS} "${OBJECTDIR}/interrupts.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/interrupts.o.d" -o ${OBJECTDIR}/interrupts.o interrupts.c   
-	
-${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/main.o.d 
-	@${RM} ${OBJECTDIR}/main.o 
-	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c   
-	
-${OBJECTDIR}/system.o: system.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/system.o.d 
-	@${RM} ${OBJECTDIR}/system.o 
-	@${FIXDEPS} "${OBJECTDIR}/system.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/system.o.d" -o ${OBJECTDIR}/system.o system.c   
-	
-${OBJECTDIR}/user.o: user.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/user.o.d 
-	@${RM} ${OBJECTDIR}/user.o 
-	@${FIXDEPS} "${OBJECTDIR}/user.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/user.o.d" -o ${OBJECTDIR}/user.o user.c   
-	
-${OBJECTDIR}/Primitives\ LLD/TimeDelay.o: Primitives\ LLD/TimeDelay.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR}/Primitives\ LLD 
-	@${RM} ${OBJECTDIR}/Primitives\ LLD/TimeDelay.o.d 
-	@${RM} "${OBJECTDIR}/Primitives LLD/TimeDelay.o" 
-	@${FIXDEPS} "${OBJECTDIR}/Primitives LLD/TimeDelay.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/Primitives LLD/TimeDelay.o.d" -o "${OBJECTDIR}/Primitives LLD/TimeDelay.o" "Primitives LLD/TimeDelay.c"   
-	
-${OBJECTDIR}/Primitives\ LLD/SSD1963.o: Primitives\ LLD/SSD1963.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR}/Primitives\ LLD 
-	@${RM} ${OBJECTDIR}/Primitives\ LLD/SSD1963.o.d 
-	@${RM} "${OBJECTDIR}/Primitives LLD/SSD1963.o" 
-	@${FIXDEPS} "${OBJECTDIR}/Primitives LLD/SSD1963.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/Primitives LLD/SSD1963.o.d" -o "${OBJECTDIR}/Primitives LLD/SSD1963.o" "Primitives LLD/SSD1963.c"   
-	
 ${OBJECTDIR}/_ext/215660468/TouchScreen.o: ../Board\ Support\ Package/TouchScreen.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/215660468 
 	@${RM} ${OBJECTDIR}/_ext/215660468/TouchScreen.o.d 
@@ -427,6 +379,54 @@ ${OBJECTDIR}/_ext/1713430119/TextEntry.o: ../Microchip/Graphics/TextEntry.c  nbp
 	@${RM} ${OBJECTDIR}/_ext/1713430119/TextEntry.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1713430119/TextEntry.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/_ext/1713430119/TextEntry.o.d" -o ${OBJECTDIR}/_ext/1713430119/TextEntry.o ../Microchip/Graphics/TextEntry.c   
 	
+${OBJECTDIR}/configuration_bits.o: configuration_bits.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/configuration_bits.o.d 
+	@${RM} ${OBJECTDIR}/configuration_bits.o 
+	@${FIXDEPS} "${OBJECTDIR}/configuration_bits.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/configuration_bits.o.d" -o ${OBJECTDIR}/configuration_bits.o configuration_bits.c   
+	
+${OBJECTDIR}/exceptions.o: exceptions.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/exceptions.o.d 
+	@${RM} ${OBJECTDIR}/exceptions.o 
+	@${FIXDEPS} "${OBJECTDIR}/exceptions.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/exceptions.o.d" -o ${OBJECTDIR}/exceptions.o exceptions.c   
+	
+${OBJECTDIR}/interrupts.o: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/interrupts.o.d 
+	@${RM} ${OBJECTDIR}/interrupts.o 
+	@${FIXDEPS} "${OBJECTDIR}/interrupts.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/interrupts.o.d" -o ${OBJECTDIR}/interrupts.o interrupts.c   
+	
+${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/main.o.d 
+	@${RM} ${OBJECTDIR}/main.o 
+	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c   
+	
+${OBJECTDIR}/system.o: system.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/system.o.d 
+	@${RM} ${OBJECTDIR}/system.o 
+	@${FIXDEPS} "${OBJECTDIR}/system.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/system.o.d" -o ${OBJECTDIR}/system.o system.c   
+	
+${OBJECTDIR}/user.o: user.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/user.o.d 
+	@${RM} ${OBJECTDIR}/user.o 
+	@${FIXDEPS} "${OBJECTDIR}/user.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/user.o.d" -o ${OBJECTDIR}/user.o user.c   
+	
+${OBJECTDIR}/Primitives\ LLD/TimeDelay.o: Primitives\ LLD/TimeDelay.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/Primitives\ LLD 
+	@${RM} ${OBJECTDIR}/Primitives\ LLD/TimeDelay.o.d 
+	@${RM} "${OBJECTDIR}/Primitives LLD/TimeDelay.o" 
+	@${FIXDEPS} "${OBJECTDIR}/Primitives LLD/TimeDelay.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/Primitives LLD/TimeDelay.o.d" -o "${OBJECTDIR}/Primitives LLD/TimeDelay.o" "Primitives LLD/TimeDelay.c"   
+	
+${OBJECTDIR}/Primitives\ LLD/SSD1963.o: Primitives\ LLD/SSD1963.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/Primitives\ LLD 
+	@${RM} ${OBJECTDIR}/Primitives\ LLD/SSD1963.o.d 
+	@${RM} "${OBJECTDIR}/Primitives LLD/SSD1963.o" 
+	@${FIXDEPS} "${OBJECTDIR}/Primitives LLD/SSD1963.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/Primitives LLD/SSD1963.o.d" -o "${OBJECTDIR}/Primitives LLD/SSD1963.o" "Primitives LLD/SSD1963.c"   
+	
 ${OBJECTDIR}/image_dropp/GDD_Screens.o: image_dropp/GDD_Screens.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/image_dropp 
 	@${RM} ${OBJECTDIR}/image_dropp/GDD_Screens.o.d 
@@ -445,55 +445,13 @@ ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o: image_dropp/GDD_X_Event_Handler.
 	@${RM} ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o 
 	@${FIXDEPS} "${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o.d" -o ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o image_dropp/GDD_X_Event_Handler.c   
 	
+${OBJECTDIR}/image_dropp/resource/newABIDlock.o: image_dropp/resource/newABIDlock.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/image_dropp/resource 
+	@${RM} ${OBJECTDIR}/image_dropp/resource/newABIDlock.o.d 
+	@${RM} ${OBJECTDIR}/image_dropp/resource/newABIDlock.o 
+	@${FIXDEPS} "${OBJECTDIR}/image_dropp/resource/newABIDlock.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE) -g -D__DEBUG -D__MPLAB_DEBUGGER_ICD3=1 -fframe-base-loclist  -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/image_dropp/resource/newABIDlock.o.d" -o ${OBJECTDIR}/image_dropp/resource/newABIDlock.o image_dropp/resource/newABIDlock.c   
+	
 else
-${OBJECTDIR}/configuration_bits.o: configuration_bits.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/configuration_bits.o.d 
-	@${RM} ${OBJECTDIR}/configuration_bits.o 
-	@${FIXDEPS} "${OBJECTDIR}/configuration_bits.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/configuration_bits.o.d" -o ${OBJECTDIR}/configuration_bits.o configuration_bits.c   
-	
-${OBJECTDIR}/exceptions.o: exceptions.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/exceptions.o.d 
-	@${RM} ${OBJECTDIR}/exceptions.o 
-	@${FIXDEPS} "${OBJECTDIR}/exceptions.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/exceptions.o.d" -o ${OBJECTDIR}/exceptions.o exceptions.c   
-	
-${OBJECTDIR}/interrupts.o: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/interrupts.o.d 
-	@${RM} ${OBJECTDIR}/interrupts.o 
-	@${FIXDEPS} "${OBJECTDIR}/interrupts.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/interrupts.o.d" -o ${OBJECTDIR}/interrupts.o interrupts.c   
-	
-${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/main.o.d 
-	@${RM} ${OBJECTDIR}/main.o 
-	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c   
-	
-${OBJECTDIR}/system.o: system.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/system.o.d 
-	@${RM} ${OBJECTDIR}/system.o 
-	@${FIXDEPS} "${OBJECTDIR}/system.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/system.o.d" -o ${OBJECTDIR}/system.o system.c   
-	
-${OBJECTDIR}/user.o: user.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR} 
-	@${RM} ${OBJECTDIR}/user.o.d 
-	@${RM} ${OBJECTDIR}/user.o 
-	@${FIXDEPS} "${OBJECTDIR}/user.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/user.o.d" -o ${OBJECTDIR}/user.o user.c   
-	
-${OBJECTDIR}/Primitives\ LLD/TimeDelay.o: Primitives\ LLD/TimeDelay.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR}/Primitives\ LLD 
-	@${RM} ${OBJECTDIR}/Primitives\ LLD/TimeDelay.o.d 
-	@${RM} "${OBJECTDIR}/Primitives LLD/TimeDelay.o" 
-	@${FIXDEPS} "${OBJECTDIR}/Primitives LLD/TimeDelay.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/Primitives LLD/TimeDelay.o.d" -o "${OBJECTDIR}/Primitives LLD/TimeDelay.o" "Primitives LLD/TimeDelay.c"   
-	
-${OBJECTDIR}/Primitives\ LLD/SSD1963.o: Primitives\ LLD/SSD1963.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} ${OBJECTDIR}/Primitives\ LLD 
-	@${RM} ${OBJECTDIR}/Primitives\ LLD/SSD1963.o.d 
-	@${RM} "${OBJECTDIR}/Primitives LLD/SSD1963.o" 
-	@${FIXDEPS} "${OBJECTDIR}/Primitives LLD/SSD1963.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/Primitives LLD/SSD1963.o.d" -o "${OBJECTDIR}/Primitives LLD/SSD1963.o" "Primitives LLD/SSD1963.c"   
-	
 ${OBJECTDIR}/_ext/215660468/TouchScreen.o: ../Board\ Support\ Package/TouchScreen.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/_ext/215660468 
 	@${RM} ${OBJECTDIR}/_ext/215660468/TouchScreen.o.d 
@@ -782,6 +740,54 @@ ${OBJECTDIR}/_ext/1713430119/TextEntry.o: ../Microchip/Graphics/TextEntry.c  nbp
 	@${RM} ${OBJECTDIR}/_ext/1713430119/TextEntry.o 
 	@${FIXDEPS} "${OBJECTDIR}/_ext/1713430119/TextEntry.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/_ext/1713430119/TextEntry.o.d" -o ${OBJECTDIR}/_ext/1713430119/TextEntry.o ../Microchip/Graphics/TextEntry.c   
 	
+${OBJECTDIR}/configuration_bits.o: configuration_bits.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/configuration_bits.o.d 
+	@${RM} ${OBJECTDIR}/configuration_bits.o 
+	@${FIXDEPS} "${OBJECTDIR}/configuration_bits.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/configuration_bits.o.d" -o ${OBJECTDIR}/configuration_bits.o configuration_bits.c   
+	
+${OBJECTDIR}/exceptions.o: exceptions.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/exceptions.o.d 
+	@${RM} ${OBJECTDIR}/exceptions.o 
+	@${FIXDEPS} "${OBJECTDIR}/exceptions.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/exceptions.o.d" -o ${OBJECTDIR}/exceptions.o exceptions.c   
+	
+${OBJECTDIR}/interrupts.o: interrupts.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/interrupts.o.d 
+	@${RM} ${OBJECTDIR}/interrupts.o 
+	@${FIXDEPS} "${OBJECTDIR}/interrupts.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/interrupts.o.d" -o ${OBJECTDIR}/interrupts.o interrupts.c   
+	
+${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/main.o.d 
+	@${RM} ${OBJECTDIR}/main.o 
+	@${FIXDEPS} "${OBJECTDIR}/main.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/main.o.d" -o ${OBJECTDIR}/main.o main.c   
+	
+${OBJECTDIR}/system.o: system.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/system.o.d 
+	@${RM} ${OBJECTDIR}/system.o 
+	@${FIXDEPS} "${OBJECTDIR}/system.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/system.o.d" -o ${OBJECTDIR}/system.o system.c   
+	
+${OBJECTDIR}/user.o: user.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/user.o.d 
+	@${RM} ${OBJECTDIR}/user.o 
+	@${FIXDEPS} "${OBJECTDIR}/user.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/user.o.d" -o ${OBJECTDIR}/user.o user.c   
+	
+${OBJECTDIR}/Primitives\ LLD/TimeDelay.o: Primitives\ LLD/TimeDelay.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/Primitives\ LLD 
+	@${RM} ${OBJECTDIR}/Primitives\ LLD/TimeDelay.o.d 
+	@${RM} "${OBJECTDIR}/Primitives LLD/TimeDelay.o" 
+	@${FIXDEPS} "${OBJECTDIR}/Primitives LLD/TimeDelay.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/Primitives LLD/TimeDelay.o.d" -o "${OBJECTDIR}/Primitives LLD/TimeDelay.o" "Primitives LLD/TimeDelay.c"   
+	
+${OBJECTDIR}/Primitives\ LLD/SSD1963.o: Primitives\ LLD/SSD1963.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/Primitives\ LLD 
+	@${RM} ${OBJECTDIR}/Primitives\ LLD/SSD1963.o.d 
+	@${RM} "${OBJECTDIR}/Primitives LLD/SSD1963.o" 
+	@${FIXDEPS} "${OBJECTDIR}/Primitives LLD/SSD1963.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/Primitives LLD/SSD1963.o.d" -o "${OBJECTDIR}/Primitives LLD/SSD1963.o" "Primitives LLD/SSD1963.c"   
+	
 ${OBJECTDIR}/image_dropp/GDD_Screens.o: image_dropp/GDD_Screens.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR}/image_dropp 
 	@${RM} ${OBJECTDIR}/image_dropp/GDD_Screens.o.d 
@@ -800,6 +806,12 @@ ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o: image_dropp/GDD_X_Event_Handler.
 	@${RM} ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o 
 	@${FIXDEPS} "${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o.d" -o ${OBJECTDIR}/image_dropp/GDD_X_Event_Handler.o image_dropp/GDD_X_Event_Handler.c   
 	
+${OBJECTDIR}/image_dropp/resource/newABIDlock.o: image_dropp/resource/newABIDlock.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR}/image_dropp/resource 
+	@${RM} ${OBJECTDIR}/image_dropp/resource/newABIDlock.o.d 
+	@${RM} ${OBJECTDIR}/image_dropp/resource/newABIDlock.o 
+	@${FIXDEPS} "${OBJECTDIR}/image_dropp/resource/newABIDlock.o.d" $(SILENT) -rsi ${MP_CC_DIR}../  -c ${MP_CC}  $(MP_EXTRA_CC_PRE)  -g -x c -c -mprocessor=$(MP_PROCESSOR_OPTION) -I"../Board Support Package" -I"../Microchip/Include" -I"../Microchip/Include/Graphics" -I"." -I"image_dropp" -MMD -MF "${OBJECTDIR}/image_dropp/resource/newABIDlock.o.d" -o ${OBJECTDIR}/image_dropp/resource/newABIDlock.o image_dropp/resource/newABIDlock.c   
+	
 endif
 
 # ------------------------------------------------------------------------------------
@@ -813,12 +825,12 @@ endif
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 dist/${CND_CONF}/${IMAGE_TYPE}/SSD1963_WORKING.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE)  -mdebugger -D__MPLAB_DEBUGGER_ICD3=1 -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/SSD1963_WORKING.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}           -mreserve=data@0x0:0x1FC -mreserve=boot@0x1FC02000:0x1FC02FEF -mreserve=boot@0x1FC02000:0x1FC024FF  -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_ICD3=1,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"
+	${MP_CC} $(MP_EXTRA_LD_PRE)  -mdebugger -D__MPLAB_DEBUGGER_ICD3=1 -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/SSD1963_WORKING.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}           -mreserve=data@0x0:0x1FC -mreserve=boot@0x1FC02000:0x1FC02FEF -mreserve=boot@0x1FC02000:0x1FC024FF  -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_ICD3=1,--defsym=_min_heap_size=11000,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"
 	
 else
 dist/${CND_CONF}/${IMAGE_TYPE}/SSD1963_WORKING.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE)  -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/SSD1963_WORKING.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}          -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"
+	${MP_CC} $(MP_EXTRA_LD_PRE)  -mprocessor=$(MP_PROCESSOR_OPTION)  -o dist/${CND_CONF}/${IMAGE_TYPE}/SSD1963_WORKING.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} ${OBJECTFILES_QUOTED_IF_SPACED}          -Wl,--defsym=__MPLAB_BUILD=1$(MP_EXTRA_LD_POST)$(MP_LINKER_FILE_OPTION),--defsym=_min_heap_size=11000,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map"
 	${MP_CC_DIR}\\xc32-bin2hex dist/${CND_CONF}/${IMAGE_TYPE}/SSD1963_WORKING.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} 
 endif
 

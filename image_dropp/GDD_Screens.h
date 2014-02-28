@@ -39,8 +39,6 @@
 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 *
 *****************************************************************************/
-
-
 #ifndef    _GDD_SCREENS_H_
 #define    _GDD_SCREENS_H_
 
@@ -48,7 +46,6 @@
 /***************************************************
 *FUNCTION DECLARATION
 ***************************************************/
-
 void GDDDemoCreateFirstScreen(void);
 void GDDDemoGOLDrawCallback(void);
 void GDDDemoNextScreen(void);
@@ -59,7 +56,7 @@ void GDDDemoGOLMsgCallback(WORD objMsg, OBJ_HEADER *pObj, GOL_MSG *pMsg);
 /***************************************************
 *IMAGE DECLARATION
 ***************************************************/
-extern const IMAGE_FLASH 1newABID - lock;
+extern const IMAGE_FLASH newABIDlock;
 
 
 /***************************************************
@@ -72,7 +69,6 @@ extern const FONT_FLASH Gentium_16;
 *SCREEN DECLARATION
 ***************************************************/
 void CreateFIRST(void);
-
 
 
 /***************************************************

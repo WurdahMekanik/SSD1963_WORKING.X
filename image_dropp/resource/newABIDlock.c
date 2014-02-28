@@ -1,5 +1,5 @@
 /*****************************************************************************
- * FileName:        1newABID - lock.h
+ * FileName:        newABIDlock.c
  * Processor:       PIC24F, PIC24H, dsPIC
  * Compiler:        MPLAB C30/XC16 (see release notes for tested revision)
  * Linker:          MPLAB LINK30/XC16
@@ -34,31 +34,18 @@
  * AUTO-GENERATED CODE:  Graphics Resource Converter version: 3.29.03
  *****************************************************************************/
 
-#ifndef 1NEWABID_-_LOCK_H_FILE
-#define 1NEWABID_-_LOCK_H_FILE
 /*****************************************************************************
  * SECTION:  Includes
  *****************************************************************************/
-#include <Graphics/Graphics.h>
+#include <Graphics.h>
 #include "HardwareProfile.h"
 
 /*****************************************************************************
  * SECTION:  Graphics Library Firmware Check
  *****************************************************************************/
 #if(GRAPHICS_LIBRARY_VERSION != 0x0306)
-#warning "It is suggested to use Graphics Library version 3.06 with this version of GRC."
+    #warning "It is suggested to use Graphics Library version 3.06 with this version of GRC."
 #endif
-
-
-
-/*****************************************************************************
- * This is an error check for the color depth
- *****************************************************************************/
-#if (COLOR_DEPTH > 16)
-#error "Color Depth needs to be 16 to correctly use these resources"
-#endif
-
-
 
 /*****************************************************************************
  * SECTION:  BITMAPS
@@ -69,9 +56,8 @@
  * Label: null
  * Description:  412x233 pixels, 16-bits per pixel
  ***********************************/
-extern const IMAGE_EXTERNAL null;
-#define null_WIDTH     (412)
-#define null_HEIGHT    (233)
-#define null_SIZE      (191998)
-#endif
-
+const IMAGE_FLASH newABIDlock =
+{
+    (FLASH | IMAGE_MBITMAP | COMP_NONE),
+    0x00000000
+};

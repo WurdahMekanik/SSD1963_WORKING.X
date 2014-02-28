@@ -46,25 +46,24 @@
 *			configuration is assumed.
 *
 ********************************************************************/
-    #define USE_NONBLOCKING_CONFIG  // Comment this line to use blocking configuration
+#define USE_NONBLOCKING_CONFIG  // Comment this line to use blocking configuration
 
 /*********************************************************************
 * Overview: Using Palettes, different colors can be used with the same
 *			bit depth.
 *
 ********************************************************************/
-//    #define USE_PALETTE // Comment this line if Palette is not required.
+//#define USE_PALETTE // Comment this line if Palette is not required.
     
-    #ifdef USE_PALETTE
-        //#define USE_PALETTE_EXTERNAL // Uncomment this line if Palette must be stored in External Memory.
-    #endif
+#ifdef USE_PALETTE
+    //#define USE_PALETTE_EXTERNAL // Uncomment this line if Palette must be stored in External Memory.
+#endif
 
 /*********************************************************************
 * Overview: Keyboard control on some objects can be used by enabling
 *			the GOL Focus (USE_FOCUS)support. 
 *
 *********************************************************************/
-
 #define USE_FOCUS
 
 /*********************************************************************
@@ -75,7 +74,6 @@
 *			- USE_KEYBOARD - enables the key board support.
 *
 *********************************************************************/
-
 #define USE_TOUCHSCREEN			// Enable touch screen support.
 #define USE_KEYBOARD			// Enable key board support.
 
@@ -87,21 +85,19 @@
 #define USE_GOL                 // Enable Graphics Object Layer.
 
 //#define USE_BUTTON            // Enable Button Object.
-
-//#define USE_WINDOW			// Enable Window Object.
-//#define USE_CHECKBOX			// Enable Checkbox Object.
-//#define USE_RADIOBUTTON		// Enable Radio Button Object.
-//#define USE_EDITBOX			// Enable Edit Box Object.
-//#define USE_LISTBOX			// Enable List Box Object.
+//#define USE_WINDOW            // Enable Window Object.
+//#define USE_CHECKBOX          // Enable Checkbox Object.
+//#define USE_RADIOBUTTON       // Enable Radio Button Object.
+//#define USE_EDITBOX           // Enable Edit Box Object.
+//#define USE_LISTBOX           // Enable List Box Object.
 //#define USE_SLIDER            // Enable Slider or Scroll Bar Object.
-
-//#define USE_PROGRESSBAR		// Enable Progress Bar Object.
-//#define USE_STATICTEXT		// Enable Static Text Object.
-//#define USE_PICTURE			// Enable Picture Object.
-//#define USE_GROUPBOX			// Enable Group Box Object.
-//#define USE_ROUNDDIAL			// Enable Dial Object.
-//#define USE_METER				// Enable Meter Object.
-//#define USE_TEXTENTRY			// Enable TextEntry Object.
+//#define USE_PROGRESSBAR       // Enable Progress Bar Object.
+//#define USE_STATICTEXT        // Enable Static Text Object.
+//#define USE_PICTURE           // Enable Picture Object.
+//#define USE_GROUPBOX          // Enable Group Box Object.
+//#define USE_ROUNDDIAL         // Enable Dial Object.
+//#define USE_METER             // Enable Meter Object.
+//#define USE_TEXTENTRY         // Enable TextEntry Object.
 //#define USE_CUSTOM            // Enable Custom Control Object (an example to create customized Object).
 
 /*********************************************************************
@@ -110,7 +106,6 @@
 *			for details.
 *
 *********************************************************************/
-
 //#define USE_MULTIBYTECHAR
 
 /*********************************************************************
@@ -123,8 +118,7 @@
 *
 *********************************************************************/
 #define USE_FONT_FLASH          // Support for fonts located in internal flash
-
-//#define USE_FONT_EXTERNAL		// Support for fonts located in external memory
+//#define USE_FONT_EXTERNAL       // Support for fonts located in external memory
 
 /*********************************************************************
 * Overview: Similar to Font data bitmaps can also be placed in 
@@ -137,23 +131,25 @@
 *
 *********************************************************************/
 #define USE_BITMAP_FLASH        // Support for bitmaps located in internal flash
-
-//#define USE_BITMAP_EXTERNAL		// Support for bitmaps located in external memory
+//#define USE_BITMAP_EXTERNAL     // Support for bitmaps located in external memory
+//#define USE_COMP_RLE            // Support for bitmaps located in internal flash
+#ifdef __PIC24FJ256DA210__
+    #define USE_COMP_IPU
+#endif
 
 /*********************************************************************
 * Overview: Define the malloc() and free() for versatility on OS 
 *           based systems. 
 *
 *********************************************************************/
-	#define GFX_malloc(size)    	malloc(size)
-	#define GFX_free(pObj)    	    free(pObj)
+#define GFX_malloc(size)    malloc(size)
+#define GFX_free(pObj)      free(pObj)
 
 /*********************************************************************
 * Overview: Specifies the color depth used in the demo.
 *
 *********************************************************************/
-
-	#define COLOR_DEPTH             16
+#define COLOR_DEPTH 16
 
 
 // GDD_GraphicsConfig.h should be included as the last line in this file (GraphicsConfig.h).

@@ -193,7 +193,7 @@ void CreateFIRST(void)
                        271, //bottom
                        PICT_DRAW, //state
                        1, //scale
-                       (void*)&1newABID - lock, //bitmap
+                       (void*)&newABIDlock, //bitmap
                       defscheme //scheme
                     );
 

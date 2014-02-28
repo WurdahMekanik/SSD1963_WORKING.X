@@ -54,7 +54,7 @@
  *
  * Bitmaps
  * -------
- * _1newABID___lock - 412x233 pixels, 16-bits per pixel
+ * _newABIDlock - 412x233 pixels, 16-bits per pixel
  *
  * Fonts
  * -----
@@ -2478,19 +2478,19 @@ const char __Gentium_16[] __attribute__((aligned(2))) =
 
 /*********************************
  * Bitmap Structure
- * Label: _1newABID___lock
+ * Label: _newABIDlock
  * Description:  412x233 pixels, 16-bits per pixel
  ***********************************/
 
-extern FLASH_BYTE ___1newABID___lock[];
+extern FLASH_BYTE ___newABIDlock[];
 
-const IMAGE_FLASH _1newABID___lock =
+const IMAGE_FLASH _newABIDlock =
 {
     (FLASH | IMAGE_MBITMAP | COMP_NONE),
-    (FLASH_BYTE *)___1newABID___lock
+    (FLASH_BYTE *)___newABIDlock
 };
 
-FLASH_BYTE ___1newABID___lock[] =
+FLASH_BYTE ___newABIDlock[] =
 {
 /****************************************
  * Bitmap header

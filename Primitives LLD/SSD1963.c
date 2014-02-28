@@ -3,7 +3,7 @@
  *****************************************************************************
  * FileName:        SSD1963.c
  * Dependencies:    SSD1963.h
- * Processor:       Microchip PIC32MX360F512L
+ * Processor:       Microchip PIC32MX
  * Compiler:        MPLAB C32 version 1.10 or higher
  * Linker:          MPLAB LINK32
  * Company:         TechToys Company
@@ -12,15 +12,389 @@
  *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * John Leung       17/06/2011
  *****************************************************************************/
+
+/*******************************************************************************
+* Remarks:
+* 1. Removed hardware definition for LED_LAT_BIT and LED_TRIS_BIT
+*	  because PWM pin of SSD1963 applied, therefore backlight intensity
+*	  set by software
+* 2. Add new function void SetBacklight(BYTE intensity)
+* 3. Funny finding, PLL to 120MHz work only when 10MHz crystal applied with
+* 	  multiplier N = 35. A crystal with 4MHz attempted but the PLL frequency
+*	  failed to boost to 120MHz somehow!
+*
+* John Leung @ TechToys Co.			09/09/2009
+* www.TechToys.com.hk
+*******************************************************************************/
+
+/*******************************************************************************
+* Revision:
+* Port ot Microchip Graphics Library v2.00
+* (1) Only BLOCKING CONFIGURATION is supported
+* (2) GetPixel() not working yet.
+* John Leung @ TechToys Co.			15th Jan 2010
+* www.TechToys.com.hk
+*******************************************************************************/
+
+/*******************************************************************************
+* Revision:
+* (1) Optimize for WriteData() by removing CS_LAT_BIT for each write cycle
+*	  and append CS strobe between multiple WriteData()
+*
+* John Leung @ TechToys Co.			3rd Feb 2010
+* www.TechToys.com.hk
+*******************************************************************************/
+
+/*******************************************************************************
+* Revision
+* An attempt to make use of 74HC573 latch on Rev3A board and it is working.
+* Date: 8th April 2011
+*******************************************************************************/
+
+/*******************************************************************************
+* Revision:
+*
+* Three new functions for power management. They are
+* void DisplayOff(void), void DisplayOn(void), void EnterDeepSleep(void).
+* The hardware consists of a SSD1963 Rev2A EVK + PIC24/32 EVK R2C with
+* PIC32 GP Starter kit stacked on it. Display was a 4.3" TFT LCD (TY430TFT480272 Rev03).
+*
+* With Display state set to Display ON, the current drawn was 192mA,
+* being the full power state. This is a baseline.
+*
+* With EnterDeepSleep() function executed, current reduced to 128mA
+* with instant blackout of the display.
+*
+* Dummy read was not implemented to bring SSD1963 out of the deep sleep state.
+* Instead, DisplayOn() function executed which was also able to bring the TFT
+* to display ON state without any loss on the screen content.
+* However, it would be advised to follow the datasheet for a proper
+* deep sleep state exit.
+*
+* User may refer to the state chart on page 19 of SSD1963 datasheet
+* regarding individual power states
+*
+* Date: 20th April 2011
+*******************************************************************************/
+
+/*******************************************************************************
+* Revision:
+* (1) Port to Microchip Graphics Library version 3.01
+* (2) SetActivePage(0), SetVisualPage(0) under ResetDevice()
+* (3) Removed WORD PutImage(SHORT left, SHORT top, void* bitmap, BYTE stretch)
+*		It is now declared under primitive.c and primitive.h
+*
+* Programmer: John Leung @ www.TechToys.com.hk
+* Date: 10th Aug 2011
+*******************************************************************************/
+
+/*******************************************************************************
+* Revision:
+* Add support for double buffering
+* Programmer: John Leung @ www.TechToys.com.hk
+* Date: 15th Aug 2011
+*******************************************************************************/
+
+/*******************************************************************************
+* Revision:
+* Removed all PutImage() functions as they are now declared under Primitive.c
+* with Graphcis Library Version 3.0.1
+* Programmer: John Leung @ www.TechToys.com.hk
+* Date: 5th Sept 2011
+*******************************************************************************/
+
+/*******************************************************************************
+* Revision:
+* Removed #if defined (USE_DISPLAY_CONTROLLER_SSD1963_R3B) ..#endif
+* Programmer: John Leung @ www.TechToys.com.hk
+* Date: 9th Feb 2012
+*******************************************************************************/
+
+/*******************************************************************************
+* Revision:
+* Add support for USE_8BIT_PMP with PIC32MX795F512L on Explorer 16
+* Add support for TY700TFT800480_R3
+* Programmer: John Leung @ www.TechToys.com.hk
+* Date: 28th Aug 2012
+*******************************************************************************/
+
+/*******************************************************************************
+* Revision:
+* changes on WriteCommand() and WriteData() for compatibility with Explorer 16
+* for 8-bit and 16-bit PMP
+* Programmer: John Leung @ www.TechToys.com.hk
+* Date: 6th Sept 2012
+*******************************************************************************/
+
+/*******************************************************************************
+* Revision:
+* Add WriteCommandSlow() and WriteDataSlow() for Fosc before PLL locked
+*	Before PLL is locked, Fosc = 10MHz only.
+* Add support for USE_MCHP_PMPWR
+*
+* Programmer: John Leung @ www.TechToys.com.hk
+* Date: 21st Sept 2012
+*******************************************************************************/
 #include "SSD1963.h"
 
-/******************************** GLOBAL VARIABLE ********************************/
-WORD  _color;
+#include "HardwareProfile.h"
+
+#include "TimeDelay.h"
+#include "DisplayDriver.h"
+#include "Graphics/Primitive.h"
+
+
+#ifdef USE_DOUBLE_BUFFERING
+    BYTE blInvalidateAll;
+    BYTE blEnableDoubleBuffering;
+    BYTE NoOfInvalidatedRectangleAreas;
+    RectangleArea InvalidatedArea[GFX_MAX_INVALIDATE_AREAS];
+
+    volatile DWORD  _drawbuffer;
+    volatile BYTE   blDisplayUpdatePending;
+
+    static void ExchangeDrawAndFrameBuffers(void);
+#endif //USE_DOUBLE_BUFFERING
+
+// Color
+GFX_COLOR   _color;
+#ifdef USE_TRANSPARENT_COLOR
+    GFX_COLOR   _colorTransparent;
+    SHORT       _colorTransparentEnable;
+#endif
+
+#ifdef GFX_DRV_PAGE_COUNT
+    volatile DWORD	_PageTable[GFX_DRV_PAGE_COUNT];
+#endif
+
+// Clipping region control
+SHORT _clipRgn;
+// Clipping region borders
+SHORT _clipLeft;
+SHORT _clipTop;
+SHORT _clipRight;
+SHORT _clipBottom;
+
+// Active Page
+BYTE  _activePage;
+// Visual Page
+BYTE  _visualPage;
+
+// ssd1963 specific
+BYTE _gpioStatus = 0;
+
+void PutImage1BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch);
+void PutImage4BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch);
+void PutImage8BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch);
+void PutImage16BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch);
+
+void PutImage1BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch);
+void PutImage4BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch);
+void PutImage8BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch);
+void PutImage16BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch);
+
 
 /**************** LOCAL FUNCTION PROTOTYPE (SSD1963 SPECIFIC) ****************/
 static void SetArea(SHORT start_x, SHORT start_y, SHORT end_x, SHORT end_y);
 static void GPIO_WR(BYTE pin, BOOL state);
-//BYTE _gpioStatus = 0;
+
+/*********************************************************************
+* Function: IsDeviceBusy()
+*
+* Overview: Returns non-zero if LCD controller is busy 
+*           (previous drawing operation is not completed).
+*
+* PreCondition: none
+*
+* Input: none
+*
+* Output: Busy status.
+*
+* Remarks: Not implemented yet
+*
+********************************************************************/
+WORD IsDeviceBusy()
+{
+	return 0;
+}
+
+#if defined (USE_DOUBLE_BUFFERING)
+/*********************************************************************
+* Function:  static void ExchangeDrawAndFrameBuffers(void);
+*
+* Overview: Interchanges Draw and Frame buffers and copies the contents
+*           of current frame buffer to the draw buffer
+*
+* PreCondition: The graphical frame must be completely drawn.
+*
+* Input: None
+*
+* Output: None
+*
+* Side Effects: Always draw on draw buffer & not on frame buffer
+*
+********************************************************************/
+static void ExchangeDrawAndFrameBuffers(void)
+{
+	DWORD SourceBuffer, DestBuffer;
+
+    if(blEnableDoubleBuffering == 0)
+    {
+        return;
+    }	
+
+    if(_drawbuffer == GFX_BUFFER1)
+    {
+        SourceBuffer = GFX_BUFFER1;
+        DestBuffer   = GFX_BUFFER2;
+    }
+    else
+    {
+        SourceBuffer = GFX_BUFFER2;
+        DestBuffer   = GFX_BUFFER1;
+    }
+
+    _drawbuffer = DestBuffer;
+	//...
+}
+#endif
+
+#if defined (USE_DOUBLE_BUFFERING)
+/*********************************************************************
+* Function:  SwitchOnDoubleBuffering()
+*
+* Overview: Switches on the double buffering.
+*			Double buffering utilizes two buffers. The frame buffer and the
+*           draw buffer. The frame buffer is the buffer that is being displayed
+*			while the draw buffer is used for all rendering. 
+*           When this function is called, it copies the contents of the frame buffer 
+*           to the draw buffer once and all succeeding rendering will be performed on 
+*           the draw buffer. To update the frame buffer with newly drawn 
+*           items on the draw buffer call UpdateDisplayNow() or RequestDisplayUpdate().
+*
+* PreCondition: none
+*
+* Input: none
+*
+* Output: none
+*
+* Side Effects: none
+*
+********************************************************************/
+void SwitchOnDoubleBuffering(void)
+{
+    if(blEnableDoubleBuffering == 0) 
+    { 
+        blEnableDoubleBuffering = 1; 
+        InvalidateAll(); 
+    }  
+}
+
+
+/*********************************************************************
+* Function:  SwitchOffDoubleBuffering()
+*
+* Overview: Switches off the double buffering.
+*           All rendering will be performed on the frame buffer. Calls
+*           to UpdateDisplayNow() or RequestDisplayUpdate() will 
+*           have no effect.
+*
+* PreCondition: none
+*
+* Input: none
+*
+* Output: none
+*
+* Side Effects: none
+*
+********************************************************************/
+void SwitchOffDoubleBuffering(void)
+{
+    if(blEnableDoubleBuffering == 1) 
+    { 
+        UpdateDisplayNow(); 
+        _drawbuffer = (_drawbuffer == GFX_BUFFER1)? GFX_BUFFER2: GFX_BUFFER1; 
+        blEnableDoubleBuffering = 0; 
+    }
+}
+
+/*********************************************************************
+* Function:  void UpdateDisplayNow(void)
+*
+* Overview: Synchronizes the draw and frame buffers immediately
+*
+* PreCondition: none
+*
+* Input: none
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Remarks:	For SSD1963, this is equivalent to updating the pointer
+*			to the DrawBuffer and swap the role of DrawBuffer with 
+*			FrameBuffer with ExchangeDrawAndFrameBuffers()
+********************************************************************/
+void UpdateDisplayNow(void)
+{
+	SetScrollArea(0, GetMaxY()+1,0);
+	if(_drawbuffer == GFX_BUFFER1)
+	{
+		SetScrollStart(0);
+	} else
+	{
+		SetScrollStart(GetMaxY()+1);
+	}
+    ExchangeDrawAndFrameBuffers();
+}
+
+
+/*********************************************************************
+* Function:  void RequestDisplayUpdate(void)
+*
+* Overview: Synchronizes the draw and frame buffers at next VBlank
+*
+* PreCondition: none
+*
+* Input: none
+*
+* Output: none
+*
+* Side Effects: none
+* Remarks: Not implemented yet, may use tearing effect to achieve this
+********************************************************************/
+void RequestDisplayUpdate(void)
+{
+	//use tearing effect!
+}
+
+#endif	//USE_DOUBLE_BUFFERING
+
+/*********************************************************************
+* Macros:  PMPWaitBusy()
+*
+* Overview: waits for PMP cycle end.
+*
+* PreCondition: none
+*
+* Input: none
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Note: 
+********************************************************************/
+#ifdef __PIC32MX
+    #define PMPWaitBusy()  while(PMMODEbits.BUSY);
+
+#else
+    #ifdef __PIC24F__
+        #define PMPWaitBusy()  Nop();
+    #else
+        #error CONTROLLER IS NOT SUPPORTED
+    #endif
+#endif
 
 /*********************************************************************
 * Macros:  WriteCommand(cmd)
@@ -62,39 +436,6 @@ static void GPIO_WR(BYTE pin, BOOL state);
 #define WriteData(data) {RS_LAT_BIT = 1; PMDIN = data; WR_LAT_BIT = 0;  WR_LAT_BIT = 1;}
 
 /*********************************************************************
-* Function:  SetArea(start_x,start_y,end_x,end_y)
-*
-* PreCondition: SetActivePage(page)
-*
-* Input: start_x, end_x	- start column and end column
-*		 start_y,end_y 	- start row and end row position (i.e. page address)
-*
-* Output: none
-*
-* Side Effects: none
-*
-* Overview: defines start/end columns and start/end rows for memory access
-*			from host to SSD1963
-* Note: none
-********************************************************************/
-void SetArea(SHORT start_x, SHORT start_y, SHORT end_x, SHORT end_y)
-{
-    WriteCommand(CMD_SET_COLUMN);
-    CS_LAT_BIT = 0;
-    WriteData(start_x>>8);
-    WriteData(start_x);
-    WriteData(end_x>>8);
-    WriteData(end_x);
-    CS_LAT_BIT = 1;
-    WriteCommand(CMD_SET_PAGE);
-    CS_LAT_BIT = 0;
-    WriteData(start_y>>8);
-    WriteData(start_y);
-    WriteData(end_y>>8);
-    WriteData(end_y);
-    CS_LAT_BIT = 1;
-}
-/*********************************************************************
 * Function: Set a GPIO pin to state high(1) or low(0)
 *
 * PreCondition: Set the GPIO pin an output prior using this function
@@ -122,6 +463,195 @@ static void GPIO_WR(BYTE pin, BOOL state)
     WriteCommand(CMD_SET_GPIO_VAL);	// Set GPIO value
     CS_LAT_BIT = 0;
     WriteData(_gpioStatus);
+    CS_LAT_BIT = 1;
+}
+/*********************************************************************
+* Functions:  SetActivePage(page)
+*
+* Overview: Sets active graphic page.
+*
+* PreCondition: none
+*
+* Input: page - Graphic page number.
+*
+* Output: none
+*
+* Side Effects: none
+*
+********************************************************************/
+void SetActivePage(WORD page)
+{
+    _activePage = (BYTE)page;
+}
+/*********************************************************************
+* Functions: SetVisualPage(page)
+*
+* Overview: Sets graphic page to display.
+*
+* PreCondition: none
+*
+* Input: page - Graphic page number
+*
+* Output: none
+*
+* Side Effects: none
+*
+********************************************************************/
+void SetVisualPage(WORD page)
+{
+    _visualPage = (BYTE)page;
+    SetScrollArea(0,GetMaxY()+1,0);
+    SetScrollStart((SHORT)_visualPage*(GetMaxY()+1));
+}
+/*********************************************************************
+* Function: SetClipRgn(left, top, right, bottom)
+*
+* Overview: Sets clipping region.
+*
+* PreCondition: none
+*
+* Input: left - Defines the left clipping region border.
+*		 top - Defines the top clipping region border.
+*		 right - Defines the right clipping region border.
+*	     bottom - Defines the bottom clipping region border.
+*
+* Output: none
+*
+* Side Effects: none
+*
+********************************************************************/
+void SetClipRgn(SHORT left, SHORT top, SHORT right, SHORT bottom)
+{
+    _clipLeft=left;
+    _clipTop=top;
+    _clipRight=right;
+    _clipBottom=bottom;
+}
+/*********************************************************************
+* Macros: SetClip(control)
+*
+* Overview: Enables/disables clipping.
+*
+* PreCondition: none
+*
+* Input: control - Enables or disables the clipping.
+*			- 0: Disable clipping
+*			- 1: Enable clipping
+*
+* Output: none
+*
+* Side Effects: none
+*
+********************************************************************/
+void SetClip(BYTE control)
+{
+    _clipRgn=control;
+}
+/*********************************************************************
+* Function:  SetArea(start_x,start_y,end_x,end_y)
+*
+* PreCondition: SetActivePage(page)
+*
+* Input: start_x, end_x	- start column and end column
+*		 start_y,end_y 	- start row and end row position (i.e. page address)
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Overview: defines start/end columns and start/end rows for memory access
+*			from host to SSD1963
+* Note: none
+********************************************************************/
+void SetArea(SHORT start_x, SHORT start_y, SHORT end_x, SHORT end_y)
+{
+    DWORD offset;
+
+#if defined (USE_DOUBLE_BUFFERING)
+    if(_drawbuffer==GFX_BUFFER1)
+        offset = 0;
+    else
+        offset = (DWORD)(GetMaxY()+1);
+#else
+    offset = (DWORD)_activePage*(GetMaxY()+1);
+#endif
+
+    start_y = offset + start_y;
+    end_y   = offset + end_y;
+
+    WriteCommand(CMD_SET_COLUMN);
+    CS_LAT_BIT = 0;
+    WriteData(start_x>>8);
+    WriteData(start_x);
+    WriteData(end_x>>8);
+    WriteData(end_x);
+    CS_LAT_BIT = 1;
+    WriteCommand(CMD_SET_PAGE);
+    CS_LAT_BIT = 0;
+    WriteData(start_y>>8);
+    WriteData(start_y);
+    WriteData(end_y>>8);
+    WriteData(end_y);
+    CS_LAT_BIT = 1;
+}
+/*********************************************************************
+* Function:  SetScrollArea(SHORT top, SHORT scroll, SHORT bottom)
+*
+* PreCondition: none
+*
+* Input: top - Top fixed area in number of lines from top of the frame buffer
+*        scroll - Vertical scrolling area in number of lines
+*        bottom - Bottom Fixed Area in number of lines
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Overview:
+*
+* Note: Reference: section 9.22 Set Scroll Area, SSD1963 datasheet Rev0.20
+********************************************************************/
+void SetScrollArea(SHORT top, SHORT scroll, SHORT bottom)
+{
+    WriteCommand(CMD_SET_SCROLL_AREA);
+    CS_LAT_BIT = 0;
+    WriteData(top>>8);
+    WriteData(top);
+    WriteData(scroll>>8);
+    WriteData(scroll);
+    WriteData(bottom>>8);
+    WriteData(bottom);
+    CS_LAT_BIT = 1;
+}
+/*********************************************************************
+* Function:  void  SetScrollStart(SHORT line)
+*
+* Overview: First, we need to define the scrolling area by SetScrollArea()
+*           before using this function.
+*
+* PreCondition: SetScrollArea(SHORT top, SHORT scroll, SHORT bottom)
+*
+* Input: line - Vertical scrolling pointer (in number of lines) as
+*        the first display line from the Top Fixed Area defined in SetScrollArea()
+*
+* Output: none
+*
+* Note: (Example:)
+*    <CODE>
+*       SHORT line=0;
+*       SetScrollArea(0,272,0);
+*       for(line=0;line<272;line++) {SetScrollStart(line);DelayMs(100);}
+*   </CODE>
+*
+*      Code above scrolls the whole page upwards in 100ms interval
+*      with page 2 replacing the first page in scrolling
+********************************************************************/
+void SetScrollStart(SHORT line)
+{
+    WriteCommand(CMD_SET_SCROLL_START);
+    CS_LAT_BIT = 0;
+    WriteData(line>>8);
+    WriteData(line);
     CS_LAT_BIT = 1;
 }
 /*********************************************************************
@@ -273,6 +803,728 @@ void PutPixel(SHORT x, SHORT y)
     WriteData(_color);
     CS_LAT_BIT = 1;
 }
+/*********************************************************************
+* Function: WORD GetPixel(SHORT x, SHORT y)
+*
+* PreCondition: none
+*
+* Input: x,y - pixel coordinates
+*
+* Output: pixel color
+*
+* Side Effects: none
+*
+* Overview: returns pixel color at x,y position
+*
+* Note: none
+*
+********************************************************************/
+WORD GetPixel(SHORT x, SHORT y)
+{
+    ;
+}
+/*********************************************************************
+* Function: WORD Bar(SHORT left, SHORT top, SHORT right, SHORT bottom)
+*
+* PreCondition: none
+*
+* Input: left,top - top left corner coordinates,
+*        right,bottom - bottom right corner coordinates
+*
+* Output: For Blocking configuration:
+*         - Always return 1.
+*
+* Side Effects: none
+*
+* Overview: draws rectangle filled with current color
+*
+* Note: none
+*
+********************************************************************/
+//#ifdef USE_DRV_BAR
+WORD Bar(SHORT left, SHORT top, SHORT right, SHORT bottom)
+{
+    register SHORT  x,y;
+
+    if(_clipRgn)
+    {
+        if(left<_clipLeft)
+            left = _clipLeft;
+        if(right>_clipRight)
+            right= _clipRight;
+        if(top<_clipTop)
+            top = _clipTop;
+        if(bottom>_clipBottom)
+            bottom = _clipBottom;
+    }
+
+    SetArea(left,top,right,bottom);
+    WriteCommand(CMD_WR_MEMSTART);
+    CS_LAT_BIT = 0;
+    for(y=top; y<bottom+1; y++)
+    {
+        for(x=left; x<right+1; x++)
+        {
+            #if defined (USE_16BIT_PMP)
+                WriteData(_color);
+            #elif defined (USE_8BIT_PMP)
+                WriteColor(_color);
+            #endif
+        }
+    }
+    CS_LAT_BIT = 1;
+    return (1);
+}
+//#endif
+
+/*********************************************************************
+* Function: WORD PutImage(SHORT left, SHORT top, void* bitmap, BYTE stretch)
+*
+* PreCondition: none
+*
+* Input: left,top - left top image corner,
+*        bitmap - image pointer,
+*        stretch - image stretch factor
+*
+* Output: For Blocking configuration:
+*         - Always return 1.
+*
+* Side Effects: none
+*
+* Overview: outputs image starting from left,top coordinates
+*
+* Note: image must be located in flash
+*
+********************************************************************/
+
+#ifdef USE_BITMAP_FLASH
+/*********************************************************************
+* Function: void PutImage1BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch)
+*
+* PreCondition: none
+*
+* Input: left,top - left top image corner,
+*        bitmap - image pointer,
+*        stretch - image stretch factor
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Overview: outputs monochrome image starting from left,top coordinates
+*
+* Note: image must be located in flash
+*
+********************************************************************/
+void PutImage1BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch)
+{
+    register FLASH_BYTE* flashAddress;
+    register FLASH_BYTE* tempFlashAddress;
+    BYTE temp;
+    WORD sizeX, sizeY;
+    WORD x,y,y_inc;
+    BYTE stretchX,stretchY;
+    WORD pallete[2];
+    BYTE mask;
+
+    // Move pointer to size information
+    flashAddress = bitmap + 2;
+
+    // Read image size
+    sizeY = *((FLASH_WORD*)flashAddress);
+    flashAddress += 2;
+    sizeX = *((FLASH_WORD*)flashAddress);
+    flashAddress += 2;
+    pallete[0] = *((FLASH_WORD*)flashAddress);
+    flashAddress += 2;
+    pallete[1] = *((FLASH_WORD*)flashAddress);
+    flashAddress += 2;
+
+    y_inc = 0;      // Y-counter, in case stretch > 1
+    for(y=0; y<sizeY; y++)
+    {
+        tempFlashAddress = flashAddress;
+        for(stretchY = 0; stretchY<stretch; stretchY++)
+        {
+            flashAddress = tempFlashAddress;
+            SetArea(left, top+y_inc, GetMaxX(), GetMaxY());
+            y_inc++;
+            WriteCommand(CMD_WR_MEMSTART);
+            mask = 0;
+            CS_LAT_BIT= 0 ;
+            for(x=0; x<sizeX; x++)
+            {
+                // Read 8 pixels from flash
+                if(mask == 0)
+                {
+                    temp = *flashAddress;
+                    flashAddress++;
+                    mask = 0x80;
+                }
+                // Set color
+                if(mask&temp)
+                    SetColor(pallete[1]);
+                else
+                    SetColor(pallete[0]);
+                // Write pixel to screen
+                for(stretchX=0; stretchX<stretch; stretchX++)
+                {
+                    WriteData(_color);
+                }
+                // Shift to the next pixel
+                mask >>= 1;
+            }
+            CS_LAT_BIT = 1;
+        }
+    }
+}
+/*********************************************************************
+* Function: void PutImage4BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch)
+*
+* PreCondition: none
+*
+* Input: left,top - left top image corner, bitmap - image pointer,
+*        stretch - image stretch factor
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Overview: outputs 16 color image starting from left,top coordinates
+*
+* Note: image must be located in flash
+*
+********************************************************************/
+void PutImage4BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch)
+{
+    register FLASH_BYTE* flashAddress;
+    register FLASH_BYTE* tempFlashAddress;
+    WORD sizeX, sizeY;
+    register WORD x,y;
+    WORD y_inc;
+    BYTE temp;
+    register BYTE stretchX,stretchY;
+    WORD pallete[16];
+    WORD counter;
+
+    // Move pointer to size information
+    flashAddress = bitmap + 2;
+
+    // Read image size
+    sizeY = *((FLASH_WORD*)flashAddress);
+    flashAddress += 2;
+    sizeX = *((FLASH_WORD*)flashAddress);
+    flashAddress += 2;
+
+    // Read pallete
+    for(counter=0;counter<16;counter++)
+    {
+        pallete[counter] = *((FLASH_WORD*)flashAddress);
+        flashAddress += 2;
+    }
+    
+    y_inc = 0;      // Y-counter, in case stretch > 1
+    for(y=0; y<sizeY; y++)
+    {
+        tempFlashAddress = flashAddress;
+        for(stretchY = 0; stretchY<stretch; stretchY++)
+        {
+            flashAddress = tempFlashAddress;
+            SetArea(left, top+y_inc, GetMaxX(), GetMaxY());
+            y_inc++;
+            WriteCommand(CMD_WR_MEMSTART);
+            CS_LAT_BIT = 0;
+            for(x=0; x<sizeX; x++)
+            {
+                // Read 2 pixels from flash
+                if(x&0x0001)
+                {
+                    // second pixel in byte
+                    SetColor(pallete[temp>>4]);
+                }
+                else
+                {
+                    temp = *flashAddress;
+                    flashAddress++;
+                    // first pixel in byte
+                    SetColor(pallete[temp&0x0f]);
+                }
+
+                // Write pixel to screen
+                for(stretchX=0; stretchX<stretch; stretchX++)
+                {
+                    WriteData(_color);
+                }
+            }
+            CS_LAT_BIT = 1;
+        }
+    }
+}
+/*********************************************************************
+* Function: void PutImage8BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch)
+*
+* PreCondition: none
+*
+* Input: left,top - left top image corner, bitmap - image pointer,
+*        stretch - image stretch factor
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Overview: outputs 256 color image starting from left,top coordinates
+*
+* Note: image must be located in flash
+*
+********************************************************************/
+void PutImage8BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch)
+{
+    register FLASH_BYTE* flashAddress;
+    register FLASH_BYTE* tempFlashAddress;
+    WORD sizeX, sizeY;
+    WORD x,y, y_inc;
+    BYTE temp;
+    BYTE stretchX, stretchY;
+    WORD pallete[256];
+    WORD counter;
+
+    // Move pointer to size information
+    flashAddress = bitmap + 2;
+
+    // Read image size
+    sizeY = *((FLASH_WORD*)flashAddress);
+    flashAddress += 2;
+    sizeX = *((FLASH_WORD*)flashAddress);
+    flashAddress += 2;
+
+    // Read pallete
+    for(counter=0;counter<256;counter++)
+    {
+        pallete[counter] = *((FLASH_WORD*)flashAddress);
+        flashAddress += 2;
+    }
+    y_inc = 0;      // Y-counter, in case stretch > 1
+    
+    for(y=0; y<sizeY; y++)
+    {
+        tempFlashAddress = flashAddress;
+        for(stretchY = 0; stretchY<stretch; stretchY++)
+        {
+            flashAddress = tempFlashAddress;
+            SetArea(left, top+y_inc, GetMaxX(), GetMaxY());
+            y_inc++;
+            WriteCommand(CMD_WR_MEMSTART);
+            CS_LAT_BIT = 0;
+            for(x=0; x<sizeX; x++)
+            {
+                // Read pixels from flash
+                temp = *flashAddress;
+                flashAddress++;
+
+                // Set color
+                SetColor(pallete[temp]);
+                
+                // Write pixel to screen
+                for(stretchX=0; stretchX<stretch; stretchX++)
+                {
+                    WriteData(_color);
+                }
+            }
+            CS_LAT_BIT = 1;
+        }
+    }
+}
+/*********************************************************************
+* Function: void PutImage16BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch)
+*
+* PreCondition: none
+*
+* Input: left,top - left top image corner, bitmap - image pointer,
+*        stretch - image stretch factor
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Overview: outputs hicolor image starting from left,top coordinates
+*
+* Note: image must be located in flash
+*
+********************************************************************/
+void PutImage16BPP(SHORT left, SHORT top, FLASH_BYTE* bitmap, BYTE stretch)
+{
+    register FLASH_WORD* flashAddress;
+    register FLASH_WORD* tempFlashAddress;
+    WORD sizeX, sizeY;
+    register WORD x,y;
+    WORD y_inc;
+    WORD temp;
+    register BYTE stretchX,stretchY;
+
+    // Move pointer to size information
+    flashAddress = (FLASH_WORD*)bitmap + 1;
+
+    // Read image size
+    sizeY = *flashAddress;
+    flashAddress++;
+    sizeX = *flashAddress;
+    flashAddress++;
+
+    y_inc = 0;      // Y-counter, in case stretch > 1
+    for(y=0; y<sizeY; y++)
+    {
+        tempFlashAddress = flashAddress;
+        for(stretchY = 0; stretchY<stretch; stretchY++)
+        {
+            flashAddress = tempFlashAddress;
+            SetArea(left, top+y_inc, GetMaxX(), GetMaxY());
+            y_inc++;
+            WriteCommand(CMD_WR_MEMSTART);
+            CS_LAT_BIT = 0;
+            for(x=0; x<sizeX; x++)
+            {
+                // Read pixels from flash
+                temp = *flashAddress;
+                flashAddress++;
+
+                // Set color
+                SetColor(temp);
+
+                // Write pixel to screen
+                for(stretchX=0; stretchX<stretch; stretchX++)
+                {
+                    WriteData(_color);
+                }
+            }
+            CS_LAT_BIT = 1;
+        }
+    }
+}
+#endif
+
+#ifdef USE_BITMAP_EXTERNAL
+/*********************************************************************
+* Function: void PutImage1BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch)
+*
+* PreCondition: none
+*
+* Input: left,top - left top image corner, bitmap - image pointer,
+*        stretch - image stretch factor
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Overview: outputs monochrome image starting from left,top coordinates
+*
+* Note: image must be located in external memory
+*
+********************************************************************/
+void PutImage1BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch)
+{
+    register DWORD      memOffset;
+    BITMAP_HEADER       bmp;
+    WORD                pallete[2];
+    BYTE                lineBuffer[((GetMaxX()+1)/8)+1];
+    BYTE*               pData;
+    SHORT               byteWidth;
+    BYTE                temp;
+    BYTE                mask;
+    WORD                sizeX, sizeY;
+    WORD                x,y,y_inc;
+    BYTE                stretchX, stretchY;
+
+    // Get bitmap header
+    ExternalMemoryCallback(bitmap, 0, sizeof(BITMAP_HEADER), &bmp);
+
+    // Get pallete (2 entries)
+    ExternalMemoryCallback(bitmap, sizeof(BITMAP_HEADER), 2*sizeof(WORD), pallete);
+
+    // Set offset to the image data
+    memOffset = sizeof(BITMAP_HEADER) + 2*sizeof(WORD);
+
+    // Line width in bytes
+    byteWidth = bmp.width>>3;
+    if(bmp.width&0x0007)
+        byteWidth++;
+
+    // Get size
+    sizeX = bmp.width;
+    sizeY = bmp.height;
+
+    y_inc = 0;      // Y-counter, in case stretch > 1
+    for(y=0; y<sizeY; y++)
+    {
+        // Get line
+        ExternalMemoryCallback(bitmap, memOffset, byteWidth, lineBuffer);
+        memOffset += byteWidth;
+        
+        for(stretchY = 0; stretchY<stretch; stretchY++)
+        {
+            pData = lineBuffer;
+            SetArea(left, top+y_inc, GetMaxX(), GetMaxY());
+            y_inc++;
+            WriteCommand(CMD_WR_MEMSTART);
+            mask = 0;
+            CS_LAT_BIT = 0;
+            for(x=0; x<sizeX; x++)
+            {
+                // Read 8 pixels from flash
+                if(mask == 0)
+                {
+                    temp = *pData++;
+                    mask = 0x80;
+                }
+                
+                // Set color
+                if(mask&temp)
+                    SetColor(pallete[1]);
+                else
+                    SetColor(pallete[0]);
+
+                // Write pixel to screen
+                for(stretchX=0; stretchX<stretch; stretchX++)
+                {
+                    WriteData(_color);
+                }
+                
+                // Shift to the next pixel
+                mask >>= 1;
+            }
+            CS_LAT_BIT = 1;
+        }
+    }
+}
+/*********************************************************************
+* Function: void PutImage4BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch)
+*
+* PreCondition: none
+*
+* Input: left,top - left top image corner, bitmap - image pointer,
+*        stretch - image stretch factor
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Overview: outputs monochrome image starting from left,top coordinates
+*
+* Note: image must be located in external memory
+*
+********************************************************************/
+void PutImage4BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch)
+{
+    register DWORD      memOffset;
+    BITMAP_HEADER       bmp;
+    WORD                pallete[16];
+    BYTE                lineBuffer[((GetMaxX()+1)/2)+1];
+    BYTE*               pData;
+    SHORT               byteWidth;
+    BYTE                temp;
+    WORD                sizeX, sizeY;
+    WORD                x,y,y_inc;
+    BYTE                stretchX, stretchY;
+
+    // Get bitmap header
+    ExternalMemoryCallback(bitmap, 0, sizeof(BITMAP_HEADER), &bmp);
+
+    // Get pallete (16 entries)
+    ExternalMemoryCallback(bitmap, sizeof(BITMAP_HEADER), 16*sizeof(WORD), pallete);
+
+    // Set offset to the image data
+    memOffset = sizeof(BITMAP_HEADER) + 16*sizeof(WORD);
+
+    // Line width in bytes
+    byteWidth = bmp.width>>1;
+    if(bmp.width&0x0001)
+        byteWidth++;
+
+    // Get size
+    sizeX = bmp.width;
+    sizeY = bmp.height;
+    
+    y_inc = 0;      // Y-counter, in case stretch > 1
+    for(y=0; y<sizeY; y++)
+    {
+        // Get line
+        ExternalMemoryCallback(bitmap, memOffset, byteWidth, lineBuffer);
+        memOffset += byteWidth;
+        
+        for(stretchY = 0; stretchY<stretch; stretchY++)
+        {
+            pData = lineBuffer;
+            SetArea(left, top+y_inc, GetMaxX(), GetMaxY());
+            y_inc++;
+            WriteCommand(CMD_WR_MEMSTART);
+            CS_LAT_BIT = 0;
+            for(x=0; x<sizeX; x++)
+            {
+                // Read 2 pixels from flash
+                if(x&0x0001)
+                {
+                    // second pixel in byte
+                    SetColor(pallete[temp>>4]);
+                }
+                else
+                {
+                    temp = *pData++;
+                    // first pixel in byte
+                    SetColor(pallete[temp&0x0f]);
+                }
+
+                // Write pixel to screen
+                for(stretchX=0; stretchX<stretch; stretchX++)
+                {
+                    WriteData(_color);
+                }
+            }
+            CS_LAT_BIT = 1;
+        }
+    }
+}
+/*********************************************************************
+* Function: void PutImage8BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch)
+*
+* PreCondition: none
+*
+* Input: left,top - left top image corner, bitmap - image pointer,
+*        stretch - image stretch factor
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Overview: outputs monochrome image starting from left,top coordinates
+*
+* Note: image must be located in external memory
+*
+********************************************************************/
+void PutImage8BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch)
+{
+    register DWORD      memOffset;
+    BITMAP_HEADER       bmp;
+    WORD                pallete[256];
+    BYTE                lineBuffer[(GetMaxX()+1)];
+    BYTE*               pData;
+    BYTE                temp;
+    WORD                sizeX, sizeY;
+    WORD                x,y,y_inc;
+    BYTE                stretchX, stretchY;
+
+    // Get bitmap header
+    ExternalMemoryCallback(bitmap, 0, sizeof(BITMAP_HEADER), &bmp);
+
+    // Get pallete (256 entries)
+    ExternalMemoryCallback(bitmap, sizeof(BITMAP_HEADER), 256*sizeof(WORD), pallete);
+
+    // Set offset to the image data
+    memOffset = sizeof(BITMAP_HEADER) + 256*sizeof(WORD);
+
+    // Get size
+    sizeX = bmp.width;
+    sizeY = bmp.height;
+
+    y_inc = 0;      // Y-counter, in case stretch > 1
+    for(y=0; y<sizeY; y++)
+    {
+        // Get line
+        ExternalMemoryCallback(bitmap, memOffset, sizeX, lineBuffer);
+        memOffset += sizeX;
+        
+        for(stretchY = 0; stretchY<stretch; stretchY++)
+        {
+            pData = lineBuffer;
+            SetArea(left, top+y_inc, GetMaxX(), GetMaxY());
+            y_inc++;
+            WriteCommand(CMD_WR_MEMSTART);
+            CS_LAT_BIT  = 0;
+            for(x=0; x<sizeX; x++)
+            {
+                temp = *pData++;
+                SetColor(pallete[temp]);
+
+                // Write pixel to screen
+                for(stretchX=0; stretchX<stretch; stretchX++)
+                {
+                    WriteData(_color);
+                }
+            }
+            CS_LAT_BIT = 1;
+        }
+    }
+}
+/*********************************************************************
+* Function: void PutImage16BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch)
+*
+* PreCondition: none
+*
+* Input: left,top - left top image corner, bitmap - image pointer,
+*        stretch - image stretch factor
+*
+* Output: none
+*
+* Side Effects: none
+*
+* Overview: outputs monochrome image starting from left,top coordinates
+*
+* Note: image must be located in external memory
+*
+********************************************************************/
+void PutImage16BPPExt(SHORT left, SHORT top, void* bitmap, BYTE stretch)
+{
+    register DWORD      memOffset;
+    BITMAP_HEADER       bmp;
+    WORD                lineBuffer[(GetMaxX()+1)];
+    WORD*               pData;
+    WORD                byteWidth;
+    WORD                temp;
+    WORD                sizeX, sizeY;
+    WORD                x,y,y_inc;
+    BYTE                stretchX, stretchY;
+
+    // Get bitmap header
+    ExternalMemoryCallback(bitmap, 0, sizeof(BITMAP_HEADER), &bmp);
+
+    // Set offset to the image data
+    memOffset = sizeof(BITMAP_HEADER);
+
+    // Get size
+    sizeX = bmp.width;
+    sizeY = bmp.height;
+
+    byteWidth = sizeX<<1;
+
+    y_inc = 0;      // Y-counter, in case stretch > 1
+    for(y=0; y<sizeY; y++)
+    {
+        // Get line
+        ExternalMemoryCallback(bitmap, memOffset, byteWidth, lineBuffer);
+        memOffset += byteWidth;
+
+        for(stretchY = 0; stretchY<stretch; stretchY++)
+        {
+            pData = lineBuffer;
+            SetArea(left, top+y_inc, GetMaxX(), GetMaxY());
+            y_inc++;
+            WriteCommand(CMD_WR_MEMSTART);
+            CS_LAT_BIT = 0;
+            for(x=0; x<sizeX; x++)
+            {
+                temp = *pData++;
+                SetColor(temp);
+                
+                // Write pixel to screen
+                for(stretchX=0; stretchX<stretch; stretchX++)
+                {
+                    WriteData(_color);
+                }
+            }
+            CS_LAT_BIT  = 1;
+        }
+    }
+}
+#endif
+
 /*********************************************************************
 * Function:  void ResetDevice()
 *
@@ -505,6 +1757,32 @@ void ResetDevice(void)
     WriteData(0x01);                    // GPIO[3:0] used as normal GPIOs
     CS_LAT_BIT = 1;
 #endif
+
+#ifdef USE_DOUBLE_BUFFERING
+    // initialize double buffering feature
+    blInvalidateAll = 1;
+    blDisplayUpdatePending = 0;
+    NoOfInvalidatedRectangleAreas = 0;
+    _drawbuffer = GFX_BUFFER1;
+    SwitchOnDoubleBuffering();
+#endif //USE_DOUBLE_BUFFERING
+
+#ifdef GFX_DRV_PAGE_COUNT
+    for (i = 0; i < GFX_DRV_PAGE_COUNT; i++)
+    {
+        _PageTable[i] = GFX_DISPLAY_BUFFER_START_ADDRESS + (GFX_DISPLAY_BUFFER_LENGTH * i);
+    }
+
+    for(i = 0; i < GFX_DRV_PAGE_COUNT; i++)
+    {
+        SetActivePage(i);
+        SetColor(0);
+        ClearDevice();
+    }
+#endif  //GFX_DRV_PAGE_COUNT
+
+    SetActivePage(0);   //Set page1 as  _drawbuffer
+    SetVisualPage(0);
     // Turn on display; show the image on display
     DisplayOn();
 }
@@ -526,18 +1804,32 @@ void ResetDevice(void)
 ********************************************************************/
 void ClearDevice(void)
 {
-    DWORD xcounter, ycounter;
-
-    SetArea(0,0,DISP_HOR_RESOLUTION-1,DISP_VER_RESOLUTION-1);
-
+    //DWORD xcounter, ycounter, counter; //depreciated
+    DWORD counter;
+    SetArea(0,0,GetMaxX(),GetMaxY());
     WriteCommand(CMD_WR_MEMSTART);
     CS_LAT_BIT = 0;
-    for(ycounter=0;ycounter<DISP_VER_RESOLUTION;ycounter++)
+    for(counter=0;counter<(GetMaxY()+1)*(GetMaxX()+1);counter++)
     {
-        for(xcounter=0;xcounter<DISP_HOR_RESOLUTION;xcounter++)
-        {
+        #if defined (USE_16BIT_PMP)
             WriteData(_color);
-        }
+        #elif defined (USE_8BIT_PMP)
+            WriteColor(_color);
+        #endif
     }
     CS_LAT_BIT = 1;
+/*
+    //depreciated
+    for(ycounter=0;ycounter<GetMaxY()+1;ycounter++)
+    {
+        for(xcounter=0;xcounter<GetMaxX()+1;xcounter++)
+        {
+            #if defined (USE_16BIT_PMP)
+                WriteData(_color+xcounter+ycounter);
+            #elif defined (USE_8BIT_PMP)
+                WriteColor(_color);
+            #endif
+        }
+    }
+*/
 }

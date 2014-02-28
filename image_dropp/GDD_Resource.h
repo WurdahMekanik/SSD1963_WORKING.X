@@ -46,16 +46,15 @@
  * SECTION:  Graphics Library Firmware Check
  *****************************************************************************/
 #if(GRAPHICS_LIBRARY_VERSION != 0x0306)
-#warning "It is suggested to use Graphics Library version 3.06 with this version of GRC."
+    #warning "It is suggested to use Graphics Library version 3.06 with this version of GRC."
 #endif
-
 
 
 /*****************************************************************************
  * This is an error check for the color depth
  *****************************************************************************/
 #if (COLOR_DEPTH > 16)
-#error "Color Depth needs to be 16 to correctly use these resources"
+    #error "Color Depth needs to be 16 to correctly use these resources"
 #endif
 
 
@@ -66,13 +65,13 @@
 
 /*********************************
  * Bitmap Structure
- * Label: _1newABID___lock
+ * Label: _newABIDlock
  * Description:  412x233 pixels, 16-bits per pixel
  ***********************************/
 extern const IMAGE_FLASH _1newABID___lock;
-#define _1newABID___lock_WIDTH     (412)
-#define _1newABID___lock_HEIGHT    (233)
-#define _1newABID___lock_SIZE      (191998)
+#define _newABIDlock_WIDTH     (412)
+#define _newABIDlock_HEIGHT    (233)
+#define _newABIDlock_SIZE      (191998)
 /*****************************************************************************
  * SECTION:  Fonts
  *****************************************************************************/

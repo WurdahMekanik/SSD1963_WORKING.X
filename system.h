@@ -12,9 +12,9 @@
 #define FCY          SYS_FREQ
 
 // Specific to PIC32MX processor
-#define	GetSystemClock()        (80000000ul)        // 8 MHz/2 x 20 PLL -or- 12MHz/3 x 20 PLL
-#define	GetPeripheralClock()    GetSystemClock()    //FPBDIV = DIV_1
-#define	GetInstructionClock()   (GetSystemClock())
+//#define GetSystemClock()        (80000000ul)        // 8 MHz/2 x 20 PLL -or- 12MHz/3 x 20 PLL
+//#define GetPeripheralClock()    GetSystemClock()    //FPBDIV = DIV_1
+//#define GetInstructionClock()   (GetSystemClock())
 
 
 /******************************************************************************/

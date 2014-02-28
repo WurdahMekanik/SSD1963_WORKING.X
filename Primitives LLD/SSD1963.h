@@ -16,12 +16,87 @@
 #ifndef _SSD1963_H
 #define _SSD1963_H
 
-#include "../system.h"			//Define the hardware platform, system clock speed etc.
-#include "SSD1963_CMD.h"		//include the command table for SSD1963
-#include "TimeDelay.h"			//required for DelayMs(xx) software delay
-#include "TFT.h"			//configuration for individual TFT panels
+#ifdef __PIC32MX
+    #include <plib.h>
+    #define PMDIN1   PMDIN
+#elif defined __dsPIC33F__
+    #include <p33Fxxxx.h>
+#elif defined __PIC24H__
+    #include <p24Hxxxx.h>
+#elif defined __PIC24F__
+    #include <p24Fxxxx.h>
+#else
+    #error CONTROLLER IS NOT SUPPORTED
+#endif
 
-extern WORD	_color;
+#include "system.h"         //Define the hardware platform, system clock speed etc.
+#include "SSD1963_CMD.h"    //include the command table for SSD1963
+#include "TimeDelay.h"      //required for DelayMs(xx) software delay
+#include "TFT.h"            //configuration for individual TFT panels
+#include "DisplayDriver.h"
+
+extern GFX_COLOR _color;
+
+/*********************************************************************
+* Overview: Additional hardware-accelerated functions can be implemented
+*           in the driver. These definitions exclude the PutPixel()-based
+*           functions in the primitives layer (Primitive.c file) from compilation.
+*********************************************************************/
+
+// Define this to implement Bar function in the driver.
+//#define USE_DRV_BAR
+
+// Define this to implement ClearDevice function in the driver.
+//#define USE_DRV_CLEARDEVICE
+
+// Define this to implement PutImage function in the driver.
+//#define USE_DRV_PUTIMAGE
+
+
+/*********************************************************************
+* PARAMETERS VALIDATION
+*********************************************************************/
+#if (COLOR_DEPTH != 16)
+    #error This driver supports 16 BPP only.
+#endif
+
+#if (DISP_HOR_RESOLUTION % 8) != 0
+    #error Horizontal resolution must be divisible by 8.
+#endif
+
+#if (DISP_ORIENTATION != 0) && (DISP_ORIENTATION != 180) && (DISP_ORIENTATION != 90) && (DISP_ORIENTATION != 270)
+    #error The display orientation selected is not supported. It can be only 0,90,180 or 270.
+#endif
+
+/*********************************************************************
+* ADD SUPPORT FOR DOUBLE BUFFERING
+*********************************************************************/
+// Calculate Display Buffer Size required in bytes
+#define GFX_DISPLAY_PIXEL_COUNT ((DWORD)DISP_HOR_RESOLUTION*DISP_VER_RESOLUTION)
+
+#if (COLOR_DEPTH == 16)
+    #define GFX_REQUIRED_DISPLAY_BUFFER_SIZE_IN_BYTES   (GFX_DISPLAY_PIXEL_COUNT*2)
+#elif (COLOR_DEPTH == 8)
+    #define GFX_REQUIRED_DISPLAY_BUFFER_SIZE_IN_BYTES   (GFX_DISPLAY_PIXEL_COUNT)
+#elif (COLOR_DEPTH == 4)
+    #define GFX_REQUIRED_DISPLAY_BUFFER_SIZE_IN_BYTES   (GFX_DISPLAY_PIXEL_COUNT/2)
+#elif (COLOR_DEPTH == 1)
+    #define GFX_REQUIRED_DISPLAY_BUFFER_SIZE_IN_BYTES   (GFX_DISPLAY_PIXEL_COUNT/8)
+#endif
+
+typedef struct
+{
+    WORD X;
+    WORD Y;
+    WORD W;
+    WORD H;
+} RectangleArea;
+
+#if defined (USE_DOUBLE_BUFFERING)
+    #define GFX_MAX_INVALIDATE_AREAS    5
+    #define GFX_BUFFER1 (GFX_DISPLAY_BUFFER_START_ADDRESS)
+    #define GFX_BUFFER2 (GFX_DISPLAY_BUFFER_START_ADDRESS + GFX_REQUIRED_DISPLAY_BUFFER_SIZE_IN_BYTES)
+#endif
 
 /******************************************************************************
 * IO port definitions for Microchip PIC32MX series.
@@ -29,115 +104,66 @@ extern WORD	_color;
 * (1) Multimedia Evaluation Kit Rev 1A (MMEVK R1A)
 * (2) PIC24/32 EVK RD4 with PIC32MX360F512L as the MCU.
 *
-* Function	mcu pins			LCD pins
-* ==========	========			========
-* TE		AN4/RB4 or RG15			TE
-* DATA LINES	PMD[15:0]			D[15:0] in 16-bit addressing
-* RESET		RD1 or RA7			/RESET
-* CHIP SELECT	AN15/RB15 or RD11		/CS
-* COMMAND/DATA	RD3 or RA6			RS 
-* WR STROBE	RD4/PMPWR			/WR
-* RD STROBE	RD5/PMPRD			/RD
+* Function	mcu pins		LCD pins
+* ==========	========		========
+* TE		AN4/RB4 or RG15		TE
+* DATA LINES	PMD[15:0]		D[15:0] in 16-bit addressing
+* RESET		RD1 or RA7		/RESET
+* CHIP SELECT	AN15/RB15 or RD11	/CS
+* COMMAND/DATA	RD3 or RA6		RS 
+* WR STROBE	RD4/PMPWR		/WR
+* RD STROBE	RD5/PMPRD		/RD
 *
 ******************************************************************************/
 #if defined (PIC32_STARTER_KIT)
-	//Definitions for TE pin of SSD1963
-	#define TE_TRIS_BIT         TRISBbits.TRISB4    //set digital under ResetDevice req.
-	#define TE_PORT_BIT         PORTBbits.RB4       //it is AN4
-		
-	// Definitions for reset pin
-	#define RST_TRIS_BIT        TRISDbits.TRISD1
-	#define RST_LAT_BIT         LATDbits.LATD1
-		
-	//Definition for RS pin
-	#define RS_TRIS_BIT         TRISDbits.TRISD3
-	#define RS_LAT_BIT          LATDbits.LATD3
-		
-	// Definitions for CS pin
-	#define CS_TRIS_BIT         TRISBbits.TRISB15   //set digital under ResetDevice req.
-	#define CS_LAT_BIT          LATBbits.LATB15     //it is AN15
-		
-	// Definition for WR pin
-	#define WR_TRIS_BIT         TRISDbits.TRISD4
-	#define WR_LAT_BIT          LATDbits.LATD4
-		
-	// Definition for RD pin
-	#define RD_TRIS_BIT         TRISDbits.TRISD5
-	#define RD_LAT_BIT          LATDbits.LATD5
+    //Definitions for TE pin of SSD1963
+    #define TE_TRIS_BIT         TRISBbits.TRISB4    //set digital under ResetDevice req.
+    #define TE_PORT_BIT         PORTBbits.RB4       //it is AN4
 
-	//No IO port set for data bus because PMP module is used for the Microchip series
+    // Definitions for reset pin
+    #define RST_TRIS_BIT        TRISDbits.TRISD1
+    #define RST_LAT_BIT         LATDbits.LATD1
+
+    //Definition for RS pin
+    #define RS_TRIS_BIT         TRISDbits.TRISD3
+    #define RS_LAT_BIT          LATDbits.LATD3
+
+    // Definitions for CS pin
+    #define CS_TRIS_BIT         TRISBbits.TRISB15   //set digital under ResetDevice req.
+    #define CS_LAT_BIT          LATBbits.LATB15     //it is AN15
+
+    // Definition for WR pin
+    #define WR_TRIS_BIT         TRISDbits.TRISD4
+    #define WR_LAT_BIT          LATDbits.LATD4
+
+    // Definition for RD pin
+    #define RD_TRIS_BIT         TRISDbits.TRISD5
+    #define RD_LAT_BIT          LATDbits.LATD5
+    //No IO port set for data bus because PMP module is used for the Microchip series
+
 #elif defined (MIKROSHIT)
-	// Definitions for reset pin
-	#define RST_TRIS_BIT        TRISCbits.TRISC1
-	#define RST_LAT_BIT         LATCbits.LATC1
-		
-	//Definition for RS pin
-	#define RS_TRIS_BIT         TRISBbits.TRISB15
-	#define RS_LAT_BIT          LATBbits.LATB15
-		
-	// Definitions for CS pin
-	#define CS_TRIS_BIT         TRISFbits.TRISF12
-	#define CS_LAT_BIT          LATFbits.LATF12
-		
-	// Definition for WR pin
-	#define WR_TRIS_BIT         TRISDbits.TRISD4
-	#define WR_LAT_BIT          LATDbits.LATD4
-		
-	// Definition for RD pin
-	#define RD_TRIS_BIT         TRISDbits.TRISD5
-	#define RD_LAT_BIT          LATDbits.LATD5
-	//No IO port set for data bus because PMP module is used for the Microchip series
+    // Definitions for reset pin
+    #define RST_TRIS_BIT        TRISCbits.TRISC1
+    #define RST_LAT_BIT         LATCbits.LATC1
+
+    //Definition for RS pin
+    #define RS_TRIS_BIT         TRISBbits.TRISB15
+    #define RS_LAT_BIT          LATBbits.LATB15
+
+    // Definitions for CS pin
+    #define CS_TRIS_BIT         TRISFbits.TRISF12
+    #define CS_LAT_BIT          LATFbits.LATF12
+
+    // Definition for WR pin
+    #define WR_TRIS_BIT         TRISDbits.TRISD4
+    #define WR_LAT_BIT          LATDbits.LATD4
+
+    // Definition for RD pin
+    #define RD_TRIS_BIT         TRISDbits.TRISD5
+    #define RD_LAT_BIT          LATDbits.LATD5
+    //No IO port set for data bus because PMP module is used for the Microchip series
 #endif
 
-/*********************************************************************
-* Macros: RGB565CONVERT(red, green, blue)
-*
-* Overview: Converts true color into 5:6:5 RGB format.
-*
-* PreCondition: none
-*
-* Input: Red, Green, Blue components.
-*
-* Output: 5 bits red, 6 bits green, 5 bits blue color.
-*
-* Side Effects: none
-*
-********************************************************************/
-#define RGB565CONVERT(red, green, blue) (WORD) (((red >> 3) << 11) | ((green >> 2) << 5) | (blue >> 3))
-
-/*********************************************************************
-* Overview: Some basic colors definitions.
-*********************************************************************/
-#define BLACK               RGB565CONVERT(0,    0,    0)
-#define BRIGHTBLUE          RGB565CONVERT(0,    0,    255)
-#define BRIGHTGREEN         RGB565CONVERT(0,    255,  0)
-#define BRIGHTCYAN          RGB565CONVERT(0,    255,  255)
-#define BRIGHTRED           RGB565CONVERT(255,  0,    0)
-#define BRIGHTMAGENTA       RGB565CONVERT(255,  0,    255)
-#define BRIGHTYELLOW        RGB565CONVERT(255,  255,  0)
-#define BLUE                RGB565CONVERT(0,    0,    128)
-#define GREEN               RGB565CONVERT(0,    128,  0)
-#define CYAN                RGB565CONVERT(0,    128,  128)
-#define RED                 RGB565CONVERT(128,  0,    0)
-#define MAGENTA             RGB565CONVERT(128,  0,    128)
-#define BROWN               RGB565CONVERT(255,  128,  0)
-#define LIGHTGRAY           RGB565CONVERT(128,  128,  128)
-#define DARKGRAY            RGB565CONVERT(64,   64,   64)
-#define LIGHTBLUE           RGB565CONVERT(128,  128,  255)
-#define LIGHTGREEN          RGB565CONVERT(128,  255,  128)
-#define LIGHTCYAN           RGB565CONVERT(128,  255,  255)
-#define LIGHTRED            RGB565CONVERT(255,  128,  128)
-#define LIGHTMAGENTA        RGB565CONVERT(255,  128,  255)
-#define YELLOW              RGB565CONVERT(255,  255,  128)
-#define WHITE               RGB565CONVERT(255,  255,  255)
-                            
-#define GRAY0       	    RGB565CONVERT(224,  224,  224)
-#define GRAY1         	    RGB565CONVERT(192,  192,  192)   
-#define GRAY2               RGB565CONVERT(160,  160,  160)   
-#define GRAY3               RGB565CONVERT(128,  128,  128)
-#define GRAY4               RGB565CONVERT(96,   96,   96)
-#define GRAY5               RGB565CONVERT(64,   64,   64)
-#define GRAY6	            RGB565CONVERT(32,   32,   32)
 
 /*********************************************************************
 * Function:  void ResetDevice()
@@ -189,6 +215,23 @@ void PutPixel(SHORT x, SHORT y);
 *
 ********************************************************************/
 void ClearDevice(void);
+
+/*********************************************************************
+* Macros: SetPalette(colorNum, color)
+*
+* Overview:  Sets palette register.
+*
+* PreCondition: none
+*
+* Input: colorNum - Register number.
+*        color - Color.
+*
+* Output: none
+*
+* Side Effects: none
+*
+********************************************************************/
+#define SetPalette(colorNum, color)
 
 /*********************************************************************
 * Function:  SetScrollArea(SHORT top, SHORT scroll, SHORT bottom)
@@ -327,6 +370,24 @@ void SetBacklight(BYTE intensity);
 * Note:
 ********************************************************************/
 void SetTearingCfg(BOOL state, BOOL mode);
+
+/************************************************************************
+* Macro: Lo                                                             *
+* Preconditions: None                                                   *
+* Overview: This macro extracts a low byte from a 2 byte word.          *
+* Input: None.                                                          *
+* Output: None.                                                         *
+************************************************************************/
+#define Lo(X)   (BYTE)(X&0x00ff)
+
+/************************************************************************
+* Macro: Hi                                                             *
+* Preconditions: None                                                   *
+* Overview: This macro extracts a high byte from a 2 byte word.         *
+* Input: None.                                                          *
+* Output: None.                                                         *
+************************************************************************/
+#define Hi(X)   (BYTE)((X>>8)&0x00ff)
 
 
 #endif // _SSD1963_H
