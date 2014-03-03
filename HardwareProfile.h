@@ -682,85 +682,84 @@
 #endif // #if defined (GFX_USE_DISPLAY_PANEL_PH480272T_005_I06Q)
 
 // Using PH480272T_005_I11Q Display Panel
-// fix this: ugghhh... formatting
-	#if defined (GFX_USE_DISPLAY_PANEL_PH480272T_005_I11Q)
-		#define DISP_ORIENTATION		0
-        #define DISP_HOR_RESOLUTION		480
-        #define DISP_VER_RESOLUTION		272
-        #define DISP_DATA_WIDTH			24
-        #define DISP_HOR_PULSE_WIDTH    41
-        #define DISP_HOR_BACK_PORCH     2
-        #define DISP_HOR_FRONT_PORCH    2
-        #define DISP_VER_PULSE_WIDTH    10
-        #define DISP_VER_BACK_PORCH     2
-        #define DISP_VER_FRONT_PORCH    2
-    	#define GFX_LCD_TYPE            GFX_LCD_TFT
+#if defined (GFX_USE_DISPLAY_PANEL_PH480272T_005_I11Q)
+    #define DISP_ORIENTATION        0
+    #define DISP_HOR_RESOLUTION     480
+    #define DISP_VER_RESOLUTION     272
+    #define DISP_DATA_WIDTH         24
+    #define DISP_HOR_PULSE_WIDTH    41
+    #define DISP_HOR_BACK_PORCH     2
+    #define DISP_HOR_FRONT_PORCH    2
+    #define DISP_VER_PULSE_WIDTH    10
+    #define DISP_VER_BACK_PORCH     2
+    #define DISP_VER_FRONT_PORCH    2
+    #define GFX_LCD_TYPE            GFX_LCD_TFT
 
-        #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
-            #define GFX_DISPLAYENABLE_ENABLE
-            #define GFX_HSYNC_ENABLE
-            #define GFX_VSYNC_ENABLE
-            #define GFX_DISPLAYPOWER_ENABLE
-            #define GFX_CLOCK_POLARITY                  GFX_ACTIVE_LOW
-            #define GFX_DISPLAYENABLE_POLARITY          GFX_ACTIVE_HIGH
-            #define GFX_HSYNC_POLARITY                  GFX_ACTIVE_LOW
-            #define GFX_VSYNC_POLARITY                  GFX_ACTIVE_LOW
-            #define GFX_DISPLAYPOWER_POLARITY           GFX_ACTIVE_HIGH
-        #endif // #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
-	#endif // 	#if defined (GFX_USE_DISPLAY_PANEL_PH480272T_005_I11Q)
-
-// Using TFT_640480_8_E Display Panel
-	#if defined (GFX_USE_DISPLAY_PANEL_TFT_640480_8_E)
-        #define DISP_ORIENTATION        0
-        #define DISP_HOR_RESOLUTION     640
-        #define DISP_VER_RESOLUTION     480
-        #define DISP_HOR_PULSE_WIDTH    30
-        #define DISP_HOR_BACK_PORCH     128
-        #define DISP_HOR_FRONT_PORCH    2
-        #define DISP_VER_PULSE_WIDTH    3
-        #define DISP_VER_BACK_PORCH     35
-        #define DISP_VER_FRONT_PORCH    7
-        #define DISP_INV_LSHIFT
-    	#define GFX_LCD_TYPE            GFX_LCD_TFT
-
-        #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
-            #define GFX_DISPLAYENABLE_ENABLE
-            #define GFX_HSYNC_ENABLE
-            #define GFX_VSYNC_ENABLE
-            #define GFX_DISPLAYPOWER_ENABLE
-            #define GFX_CLOCK_POLARITY                  GFX_ACTIVE_LOW
-            #define GFX_DISPLAYENABLE_POLARITY          GFX_ACTIVE_HIGH
-            #define GFX_HSYNC_POLARITY                  GFX_ACTIVE_LOW
-            #define GFX_VSYNC_POLARITY                  GFX_ACTIVE_LOW
-            #define GFX_DISPLAYPOWER_POLARITY           GFX_ACTIVE_HIGH
-        #endif // #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
-	#endif // 	#if defined (GFX_USE_DISPLAY_PANEL_TFT_640480_8_E)
+    #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
+        #define GFX_DISPLAYENABLE_ENABLE
+        #define GFX_HSYNC_ENABLE
+        #define GFX_VSYNC_ENABLE
+        #define GFX_DISPLAYPOWER_ENABLE
+        #define GFX_CLOCK_POLARITY                  GFX_ACTIVE_LOW
+        #define GFX_DISPLAYENABLE_POLARITY          GFX_ACTIVE_HIGH
+        #define GFX_HSYNC_POLARITY                  GFX_ACTIVE_LOW
+        #define GFX_VSYNC_POLARITY                  GFX_ACTIVE_LOW
+        #define GFX_DISPLAYPOWER_POLARITY           GFX_ACTIVE_HIGH
+    #endif // #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
+#endif // #if defined (GFX_USE_DISPLAY_PANEL_PH480272T_005_I11Q)
 
 // Using TFT_640480_8_E Display Panel
-    #if defined (GFX_USE_DISPLAY_PANEL_TFT_800480_33_E)
-        #define DISP_ORIENTATION		0
-        #define DISP_HOR_RESOLUTION		800
-        #define DISP_VER_RESOLUTION		480
-        #define DISP_HOR_PULSE_WIDTH    128
-        #define DISP_HOR_BACK_PORCH     129
-        #define DISP_HOR_FRONT_PORCH    2
-        #define DISP_VER_PULSE_WIDTH    2
-        #define DISP_VER_BACK_PORCH     41
-        #define DISP_VER_FRONT_PORCH    2
-    	#define GFX_LCD_TYPE            GFX_LCD_TFT
+#if defined (GFX_USE_DISPLAY_PANEL_TFT_640480_8_E)
+    #define DISP_ORIENTATION        0
+    #define DISP_HOR_RESOLUTION     640
+    #define DISP_VER_RESOLUTION     480
+    #define DISP_HOR_PULSE_WIDTH    30
+    #define DISP_HOR_BACK_PORCH     128
+    #define DISP_HOR_FRONT_PORCH    2
+    #define DISP_VER_PULSE_WIDTH    3
+    #define DISP_VER_BACK_PORCH     35
+    #define DISP_VER_FRONT_PORCH    7
+    #define DISP_INV_LSHIFT
+    #define GFX_LCD_TYPE            GFX_LCD_TFT
 
-        #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
-            #define GFX_DISPLAYENABLE_ENABLE
-            #define GFX_HSYNC_ENABLE
-            #define GFX_VSYNC_ENABLE
-            #define GFX_DISPLAYPOWER_ENABLE
-            #define GFX_CLOCK_POLARITY                  GFX_ACTIVE_LOW
-            #define GFX_DISPLAYENABLE_POLARITY          GFX_ACTIVE_HIGH
-            #define GFX_HSYNC_POLARITY                  GFX_ACTIVE_LOW
-            #define GFX_VSYNC_POLARITY                  GFX_ACTIVE_LOW
-            #define GFX_DISPLAYPOWER_POLARITY           GFX_ACTIVE_HIGH
-        #endif // #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
-    #endif // Using TFT_640480_8_E Display Panel
+    #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
+        #define GFX_DISPLAYENABLE_ENABLE
+        #define GFX_HSYNC_ENABLE
+        #define GFX_VSYNC_ENABLE
+        #define GFX_DISPLAYPOWER_ENABLE
+        #define GFX_CLOCK_POLARITY                  GFX_ACTIVE_LOW
+        #define GFX_DISPLAYENABLE_POLARITY          GFX_ACTIVE_HIGH
+        #define GFX_HSYNC_POLARITY                  GFX_ACTIVE_LOW
+        #define GFX_VSYNC_POLARITY                  GFX_ACTIVE_LOW
+        #define GFX_DISPLAYPOWER_POLARITY           GFX_ACTIVE_HIGH
+    #endif // #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
+#endif // #if defined (GFX_USE_DISPLAY_PANEL_TFT_640480_8_E)
+
+// Using TFT_640480_8_E Display Panel
+#if defined (GFX_USE_DISPLAY_PANEL_TFT_800480_33_E)
+    #define DISP_ORIENTATION            0
+    #define DISP_HOR_RESOLUTION     800
+    #define DISP_VER_RESOLUTION     480
+    #define DISP_HOR_PULSE_WIDTH    128
+    #define DISP_HOR_BACK_PORCH     129
+    #define DISP_HOR_FRONT_PORCH    2
+    #define DISP_VER_PULSE_WIDTH    2
+    #define DISP_VER_BACK_PORCH     41
+    #define DISP_VER_FRONT_PORCH    2
+    #define GFX_LCD_TYPE            GFX_LCD_TFT
+
+    #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
+        #define GFX_DISPLAYENABLE_ENABLE
+        #define GFX_HSYNC_ENABLE
+        #define GFX_VSYNC_ENABLE
+        #define GFX_DISPLAYPOWER_ENABLE
+        #define GFX_CLOCK_POLARITY                  GFX_ACTIVE_LOW
+        #define GFX_DISPLAYENABLE_POLARITY          GFX_ACTIVE_HIGH
+        #define GFX_HSYNC_POLARITY                  GFX_ACTIVE_LOW
+        #define GFX_VSYNC_POLARITY                  GFX_ACTIVE_LOW
+        #define GFX_DISPLAYPOWER_POLARITY           GFX_ACTIVE_HIGH
+    #endif // #if defined (GFX_USE_DISPLAY_CONTROLLER_MCHP_DA210)
+#endif // Using TFT_640480_8_E Display Panel
 
 //#endif // #if !defined (DISPLAY_PANEL) ...
 
@@ -954,26 +953,25 @@
 
 */
 #ifdef PIC24FJ256DA210_DEV_BOARD
-	#if defined (GFX_EPMP_CS1_BASE_ADDRESS)
-		#define EPMPCS1_CS_POLARITY	GFX_ACTIVE_LOW
-		#define EPMPCS1_WR_POLARITY	GFX_ACTIVE_LOW
-		#define EPMPCS1_RD_POLARITY	GFX_ACTIVE_LOW
-		#define EPMPCS1_BE_POLARITY	GFX_ACTIVE_LOW
+    #if defined (GFX_EPMP_CS1_BASE_ADDRESS)
+        #define EPMPCS1_CS_POLARITY     GFX_ACTIVE_LOW
+        #define EPMPCS1_WR_POLARITY     GFX_ACTIVE_LOW
+        #define EPMPCS1_RD_POLARITY     GFX_ACTIVE_LOW
+        #define EPMPCS1_BE_POLARITY     GFX_ACTIVE_LOW
 
-		#define EPMPCS1_ACCESS_TIME     (10)        // chip select 1 Alternate Master access time.
-	#endif
+        #define EPMPCS1_ACCESS_TIME     (10)    // chip select 1 Alternate Master access time.
+    #endif
 
-	#if defined (GFX_EPMP_CS2_BASE_ADDRESS)
-		#define EPMPCS2_CS_POLARITY	GFX_ACTIVE_LOW
-		#define EPMPCS2_WR_POLARITY	GFX_ACTIVE_LOW
-		#define EPMPCS2_RD_POLARITY	GFX_ACTIVE_LOW
-		#define EPMPCS2_BE_POLARITY	GFX_ACTIVE_LOW
+    #if defined (GFX_EPMP_CS2_BASE_ADDRESS)
+        #define EPMPCS2_CS_POLARITY     GFX_ACTIVE_LOW
+        #define EPMPCS2_WR_POLARITY     GFX_ACTIVE_LOW
+        #define EPMPCS2_RD_POLARITY     GFX_ACTIVE_LOW
+        #define EPMPCS2_BE_POLARITY     GFX_ACTIVE_LOW
 
-		// macros to define the access timing of the parallel device in EPMP CS2
-		#define EPMPCS2_ACCESS_TIME     (55)        // chip select 1 Alternate Master access time.
-	#endif
+        // macros to define the access timing of the parallel device in EPMP CS2
+        #define EPMPCS2_ACCESS_TIME     (55)    // chip select 1 Alternate Master access time.
+    #endif
 #endif
-
 
 /*********************************************************************
 * HARDWARE PROFILE FOR DISPLAY CONTROLLER INTERFACE
@@ -1043,29 +1041,33 @@
        - PIC32 Ethernet Starter Kit (DM320004)
 */
 
-    // Depending on the display panel used, the backlight control may be
-    // different. This portion sets up the correct backlight level to
-    // turn on or off the backlight.
-    #if defined (GFX_USE_DISPLAY_PANEL_TFT_G240320LTSW_118W_E)
-        #define BACKLIGHT_ENABLE_LEVEL      0
-        #define BACKLIGHT_DISABLE_LEVEL     1
-    #elif defined (GFX_USE_DISPLAY_PANEL_PH480272T_005_I11Q)
-        #define BACKLIGHT_ENABLE_LEVEL      1
-        #define BACKLIGHT_DISABLE_LEVEL     0
-    #elif defined (GFX_USE_DISPLAY_PANEL_TFT_800480_33_E)
-        #define BACKLIGHT_ENABLE_LEVEL      0
-        #define BACKLIGHT_DISABLE_LEVEL     1
-    #elif defined (GFX_USE_DISPLAY_PANEL_TFT_640480_8_E)
-        #define BACKLIGHT_ENABLE_LEVEL      0
-        #define BACKLIGHT_DISABLE_LEVEL     1
-    #elif defined (GFX_USE_DISPLAY_PANEL_35QVW0T)
-        #define BACKLIGHT_ENABLE_LEVEL      0
-        #define BACKLIGHT_DISABLE_LEVEL     1
-    #else
-        // default setting is logic low
-        #define BACKLIGHT_ENABLE_LEVEL      0
-        #define BACKLIGHT_DISABLE_LEVEL     1
-    #endif
+// Depending on the display panel used, backlight control may be different.
+// This portion sets up the correct backlight level to turn backlight on/off.
+#if defined (GFX_USE_DISPLAY_PANEL_TFT_G240320LTSW_118W_E)
+    #define BACKLIGHT_ENABLE_LEVEL      0
+    #define BACKLIGHT_DISABLE_LEVEL     1
+
+#elif defined (GFX_USE_DISPLAY_PANEL_PH480272T_005_I11Q)
+    #define BACKLIGHT_ENABLE_LEVEL      1
+    #define BACKLIGHT_DISABLE_LEVEL     0
+
+#elif defined (GFX_USE_DISPLAY_PANEL_TFT_800480_33_E)
+    #define BACKLIGHT_ENABLE_LEVEL      0
+    #define BACKLIGHT_DISABLE_LEVEL     1
+
+#elif defined (GFX_USE_DISPLAY_PANEL_TFT_640480_8_E)
+    #define BACKLIGHT_ENABLE_LEVEL      0
+    #define BACKLIGHT_DISABLE_LEVEL     1
+
+#elif defined (GFX_USE_DISPLAY_PANEL_35QVW0T)
+    #define BACKLIGHT_ENABLE_LEVEL      0
+    #define BACKLIGHT_DISABLE_LEVEL     1
+
+#else
+    // default setting is logic low
+    #define BACKLIGHT_ENABLE_LEVEL      0
+    #define BACKLIGHT_DISABLE_LEVEL     1
+#endif
 
 typedef enum
 {
@@ -1112,56 +1114,56 @@ typedef enum
 
     #elif defined (__PIC32MX__)
         // When using the supported PIC32 devices
-
         /********
          * PIC32 will use the SET and CLR SFRs for the I/O.
          * These are atomic settings that are recommended when
          * modifying SFRs
          ********/
-      #if defined(__32MX250F128D__)   
+        #if defined(__32MX250F128D__)
+            #undef USE_8BIT_PMP      //no PMP selection on MX1xx/2xx devices, always in 8bit mode
 
-        #undef USE_8BIT_PMP      //no PMP selection on MX1xx/2xx devices, always in 8bit mode
+            // Definitions for reset pin
+            #define DisplayResetConfig()        TRISACLR = _TRISA_TRISA4_MASK
+            #define DisplayResetEnable()        LATACLR = _LATA_LATA4_MASK
+            #define DisplayResetDisable()       LATASET = _LATA_LATA4_MASK
 
-        // Definitions for reset pin
-        #define DisplayResetConfig()        TRISACLR = _TRISA_TRISA4_MASK    
-        #define DisplayResetEnable()        LATACLR = _LATA_LATA4_MASK
-        #define DisplayResetDisable()       LATASET = _LATA_LATA4_MASK
+            // Definitions for RS pin
+            #define DisplayCmdDataConfig()      TRISBCLR = _TRISB_TRISB14_MASK
+            #define DisplaySetCommand()         LATBCLR = _LATB_LATB14_MASK
+            #define DisplaySetData()            LATBSET = _LATB_LATB14_MASK
 
-        // Definitions for RS pin
-        #define DisplayCmdDataConfig()      TRISBCLR = _TRISB_TRISB14_MASK
-        #define DisplaySetCommand()         LATBCLR = _LATB_LATB14_MASK
-        #define DisplaySetData()            LATBSET = _LATB_LATB14_MASK
+            // Definitions for CS pin
+            #define DisplayConfig()             TRISBCLR = _TRISB_TRISB15_MASK
+            #define DisplayEnable()             LATBCLR = _LATB_LATB15_MASK
+            #define DisplayDisable()            LATBSET = _LATB_LATB15_MASK
 
-        // Definitions for CS pin
-        #define DisplayConfig()             TRISBCLR = _TRISB_TRISB15_MASK             
-        #define DisplayEnable()             LATBCLR = _LATB_LATB15_MASK
-        #define DisplayDisable()            LATBSET = _LATB_LATB15_MASK
+            // Definitions for backlight control pin
+            #define DisplayBacklightConfig()
+            #define DisplayBacklightOn()
+            #define DisplayBacklightOff()
 
-        // Definitions for backlight control pin
-        #define DisplayBacklightConfig()      
-        #define DisplayBacklightOn()        
-        #define DisplayBacklightOff()       
-      #else
-        // Definitions for reset pin
-        #define DisplayResetConfig()        TRISCCLR = _TRISC_TRISC1_MASK    
-        #define DisplayResetEnable()        LATCCLR = _LATC_LATC1_MASK
-        #define DisplayResetDisable()       LATCSET = _LATC_LATC1_MASK
+        #else
+            // Definitions for reset pin
+            #define DisplayResetConfig()        TRISCCLR = _TRISC_TRISC1_MASK
+            #define DisplayResetEnable()        LATCCLR = _LATC_LATC1_MASK
+            #define DisplayResetDisable()       LATCSET = _LATC_LATC1_MASK
 
-        // Definitions for RS pin
-        #define DisplayCmdDataConfig()      TRISCCLR = _TRISC_TRISC2_MASK
-        #define DisplaySetCommand()         LATCCLR = _LATC_LATC2_MASK
-        #define DisplaySetData()            LATCSET = _LATC_LATC2_MASK
+            // Definitions for RS pin
+            #define DisplayCmdDataConfig()      TRISCCLR = _TRISC_TRISC2_MASK
+            #define DisplaySetCommand()         LATCCLR = _LATC_LATC2_MASK
+            #define DisplaySetData()            LATCSET = _LATC_LATC2_MASK
 
-        // Definitions for CS pin
-        #define DisplayConfig()             TRISDCLR = _TRISD_TRISD10_MASK
-        #define DisplayEnable()             LATDCLR = _LATD_LATD10_MASK
-        #define DisplayDisable()            LATDSET = _LATD_LATD10_MASK
+            // Definitions for CS pin
+            #define DisplayConfig()             TRISDCLR = _TRISD_TRISD10_MASK
+            #define DisplayEnable()             LATDCLR = _LATD_LATD10_MASK
+            #define DisplayDisable()            LATDSET = _LATD_LATD10_MASK
 
-        // Definitions for backlight control pin
-        #define DisplayBacklightConfig()    (TRISDbits.TRISD0 = 0)  
-        #define DisplayBacklightOn()        (LATDbits.LATD0 = BACKLIGHT_ENABLE_LEVEL)
-        #define DisplayBacklightOff()       (LATDbits.LATD0 = BACKLIGHT_DISABLE_LEVEL)
-      #endif
+            // Definitions for backlight control pin
+            #define DisplayBacklightConfig()    (TRISDbits.TRISD0 = 0)
+            #define DisplayBacklightOn()        (LATDbits.LATD0 = BACKLIGHT_ENABLE_LEVEL)
+            #define DisplayBacklightOff()       (LATDbits.LATD0 = BACKLIGHT_DISABLE_LEVEL)
+        #endif
+
         // Definitions for FLASH CS pin
         #define DisplayFlashConfig()
         #define DisplayFlashEnable()
@@ -1225,13 +1227,10 @@ typedef enum
         #define DisplayBacklightOn()        (LATDbits.LATD0 = BACKLIGHT_ENABLE_LEVEL)
         #define DisplayBacklightOff()       (LATDbits.LATD0 = BACKLIGHT_DISABLE_LEVEL)
 
-
     #else
-
         #error "Selected PIC Device is not supported"
 
     #endif
-
 // end of #if defined (GFX_PICTAIL_V3) || defined (GFX_PICTAIL_V3E) || defined(GFX_PICTAIL_LCC)
 
 // -----------------------------------
@@ -1345,7 +1344,6 @@ typedef enum
     #define DisplayConfig()
     #define DisplayEnable()
     #define DisplayDisable()
-
 
 // end of #elif defined (PIC24FJ256DA210_DEV_BOARD)
 
@@ -1462,9 +1460,9 @@ typedef enum
 
             // Definitions for backlight control LCD-BLED pin RA9
             // This is taken care of by the SSD1963 driver...
-//          #define DisplayBacklightConfig()    TRISACLR = _TRISA_TRISA9_MASK
-//          #define DisplayBacklightOn()        LATASET = _LATA_LATA9_MASK
-//          #define DisplayBacklightOff()       LATACLR = _LATA_LATA9_MASK
+//            #define DisplayBacklightConfig()    TRISACLR = _TRISA_TRISA9_MASK
+//            #define DisplayBacklightOn()        LATASET = _LATA_LATA9_MASK
+//            #define DisplayBacklightOff()       LATACLR = _LATA_LATA9_MASK
         #endif
 
         #if defined MIKRO_MMB_PIC32MX4
@@ -1520,58 +1518,59 @@ typedef enum
 */
 
 #if defined (USE_TOUCHSCREEN_RESISTIVE)
+    /*********************************************************************
+     * Resistive Touch Screen A/D and I/O Specific Macros
+     *********************************************************************/
+    // ADC Input Channel Selector
+    #if defined(__dsPIC33F__) || defined(__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__)
+        #define TOUCH_ADC_INPUT_SEL   AD1CHS0
 
-	/*********************************************************************
-	* Resistive Touch Screen A/D and I/O Specific Macros
-	*********************************************************************/
-	// ADC Input Channel Selector
-	#if defined(__dsPIC33F__) || defined(__PIC24H__) || defined(__dsPIC33E__) || defined(__PIC24E__)
-		#define TOUCH_ADC_INPUT_SEL   AD1CHS0
- 	#elif defined(__PIC32MX__)	// PIC32MX has selection field in Upper part of register.
- 		#define TOUCH_ADC_INPUT_SEL  AD1CHSbits.CH0SA
- 		#define TOUCH_ADC_DIFF_SEL   AD1CHSbits.CH0NA	// Differential reference setting
+    #elif defined(__PIC32MX__)  // PIC32MX has selection field in Upper part of register.
+        #define TOUCH_ADC_INPUT_SEL  AD1CHSbits.CH0SA
+        #define TOUCH_ADC_DIFF_SEL   AD1CHSbits.CH0NA	// Differential reference setting
+
     #else // all other supported devices
-		#define TOUCH_ADC_INPUT_SEL  AD1CHS
- 		#define TOUCH_ADC_DIFF_SEL   AD1CHSbits.CH0NA	// Differential reference selection
+        #define TOUCH_ADC_INPUT_SEL  AD1CHS
+        #define TOUCH_ADC_DIFF_SEL   AD1CHSbits.CH0NA	// Differential reference selection
     #endif
 
-	// ADC Sample Start
-	#define TOUCH_ADC_START  AD1CON1bits.SAMP
-	// ADC Status
-	#define TOUCH_ADC_DONE   AD1CON1bits.DONE
+    // ADC Sample Start
+    #define TOUCH_ADC_START  AD1CON1bits.SAMP
+    // ADC Status
+    #define TOUCH_ADC_DONE   AD1CON1bits.DONE
 
-	// Hardware Platform dependend macros
-	/* ----------------------------------------- */
-	#if defined (PIC24FJ256DA210_DEV_BOARD)
-	/* ----------------------------------------- */
-		// ADC channel constants
-		// Potentiometer and Temperature sensor
-		/* PIC24FJ256DA210 Development Board does
-		 * not have a temperature sensor
-		 */
-		#define ADC_POT			5
-		#define ADC_XPOS		16
-		#define ADC_YPOS		18
+    // Hardware Platform dependend macros
+    /* ----------------------------------------- */
+    #if defined (PIC24FJ256DA210_DEV_BOARD)
+    /* ----------------------------------------- */
+        // ADC channel constants
+        // Potentiometer and Temperature sensor
+        /* PIC24FJ256DA210 Development Board does
+         * not have a temperature sensor
+         */
+        #define ADC_POT     5
+        #define ADC_XPOS    16
+        #define ADC_YPOS    18
 
-		// ADC Port Control Bits
-		#define ADC_POT_PCFG	ANSBbits.ANSB5
-		#define ADPCFG_XPOS		ANSCbits.ANSC4
-		#define ADPCFG_YPOS		ANSGbits.ANSG7
+        // ADC Port Control Bits
+        #define ADC_POT_PCFG    ANSBbits.ANSB5
+        #define ADPCFG_XPOS     ANSCbits.ANSC4
+        #define ADPCFG_YPOS     ANSGbits.ANSG7
         #define RESISTIVETOUCH_ANALOG  1
         #define RESISTIVETOUCH_DIGITAL 0
 
-		// X port definitions
+        // X port definitions
         #define ResistiveTouchScreen_XPlus_Drive_High()         LATCbits.LATC4   = 1
         #define ResistiveTouchScreen_XPlus_Drive_Low()          LATCbits.LATC4   = 0
         #define ResistiveTouchScreen_XPlus_Config_As_Input()    TRISCbits.TRISC4 = 1
         #define ResistiveTouchScreen_XPlus_Config_As_Output()   TRISCbits.TRISC4 = 0
-		
+
         #define ResistiveTouchScreen_XMinus_Drive_High()        LATAbits.LATA2   = 1   
         #define ResistiveTouchScreen_XMinus_Drive_Low()         LATAbits.LATA2   = 0
         #define ResistiveTouchScreen_XMinus_Config_As_Input()   TRISAbits.TRISA2 = 1  
         #define ResistiveTouchScreen_XMinus_Config_As_Output()  TRISAbits.TRISA2 = 0
 
-		// Y port definitions
+        // Y port definitions
         #define ResistiveTouchScreen_YPlus_Drive_High()         LATGbits.LATG7   = 1
         #define ResistiveTouchScreen_YPlus_Drive_Low()          LATGbits.LATG7   = 0
         #define ResistiveTouchScreen_YPlus_Config_As_Input()    TRISGbits.TRISG7 = 1
@@ -1584,130 +1583,130 @@ typedef enum
 
     // end of #if defined (PIC24FJ256DA210_DEV_BOARD)...
 
-	/* ----------------------------------------- */
-	#elif defined (MEB_BOARD)
-	/* ----------------------------------------- */
+    /* ----------------------------------------- */
+    #elif defined (MEB_BOARD)
+    /* ----------------------------------------- */
 
-		// ADC channel constants
-		// Potentiometer and Temperature sensor
-		/* The Multi-Media Expansion Board does not have a
-		 * analog pot or temperature sensor (see BMA150 for temperature
-		 * sensor data
-		 */
-		#if defined(__dsPIC33E__) || defined(__PIC24E__)
+        // ADC channel constants
+        // Potentiometer and Temperature sensor
+        /* The Multi-Media Expansion Board does not have a
+         * analog pot or temperature sensor (see BMA150 for temperature
+         * sensor data
+         */
+        #if defined(__dsPIC33E__) || defined(__PIC24E__)
 
-			#define ADC_XPOS    11
-			#define ADC_YPOS    14
+            #define ADC_XPOS    11
+            #define ADC_YPOS    14
 
-			// X port definitions
+            // X port definitions
             #define ResistiveTouchScreen_XPlus_Drive_High()         LATBbits.LATB11   = 1
             #define ResistiveTouchScreen_XPlus_Drive_Low()          LATBbits.LATB11   = 0
             #define ResistiveTouchScreen_XPlus_Config_As_Input()    TRISBbits.TRISB11 = 1
             #define ResistiveTouchScreen_XPlus_Config_As_Output()   TRISBbits.TRISB11 = 0
-			
+
             #define ResistiveTouchScreen_XMinus_Drive_High()        LATBbits.LATB13   = 1   
             #define ResistiveTouchScreen_XMinus_Drive_Low()         LATBbits.LATB13   = 0
             #define ResistiveTouchScreen_XMinus_Config_As_Input()   {ANSELBbits.ANSB13 = ANSEL_ANALOG; TRISBbits.TRISB13 = 1;}  
             #define ResistiveTouchScreen_XMinus_Config_As_Output()  {ANSELBbits.ANSB13 = ANSEL_ANALOG; TRISBbits.TRISB13 = 0;}
 
-			// Y port definitions
+            // Y port definitions
             #define ResistiveTouchScreen_YPlus_Drive_High()         LATBbits.LATB14   = 1
             #define ResistiveTouchScreen_YPlus_Drive_Low()          LATBbits.LATB14   = 0
             #define ResistiveTouchScreen_YPlus_Config_As_Input()    TRISBbits.TRISB14 = 1
             #define ResistiveTouchScreen_YPlus_Config_As_Output()   TRISBbits.TRISB14 = 0
-			
+
             #define ResistiveTouchScreen_YMinus_Drive_High()        LATBbits.LATB12   = 1   
             #define ResistiveTouchScreen_YMinus_Drive_Low()         LATBbits.LATB12   = 0
             #define ResistiveTouchScreen_YMinus_Config_As_Input()   {ANSELBbits.ANSB12 = ANSEL_ANALOG; TRISBbits.TRISB12 = 1;}  
             #define ResistiveTouchScreen_YMinus_Config_As_Output()  {ANSELBbits.ANSB12 = ANSEL_ANALOG; TRISBbits.TRISB12 = 0;}	
 
-		#else
+        #else
 
-			#define ADC_XPOS    ADC_CH0_POS_SAMPLEA_AN11
-			#define ADC_YPOS    ADC_CH0_POS_SAMPLEA_AN14
+            #define ADC_XPOS    ADC_CH0_POS_SAMPLEA_AN11
+            #define ADC_YPOS    ADC_CH0_POS_SAMPLEA_AN14
 
-			// ADC Port Control Bits
-			#define ADPCFG_XPOS AD1PCFGbits.PCFG11
-			#define ADPCFG_YPOS AD1PCFGbits.PCFG14
-	        #define RESISTIVETOUCH_ANALOG  0
+            // ADC Port Control Bits
+            #define ADPCFG_XPOS AD1PCFGbits.PCFG11
+            #define ADPCFG_YPOS AD1PCFGbits.PCFG14
+            #define RESISTIVETOUCH_ANALOG  0
             #define RESISTIVETOUCH_DIGITAL 1
 
-			// X port definitions
+            // X port definitions
             #define ResistiveTouchScreen_XPlus_Drive_High()         LATBbits.LATB11   = 1
             #define ResistiveTouchScreen_XPlus_Drive_Low()          LATBbits.LATB11   = 0
             #define ResistiveTouchScreen_XPlus_Config_As_Input()    TRISBbits.TRISB11 = 1
             #define ResistiveTouchScreen_XPlus_Config_As_Output()   TRISBbits.TRISB11 = 0
-			
-            #define ResistiveTouchScreen_XMinus_Drive_High()        LATBbits.LATB13   = 1   
+
+            #define ResistiveTouchScreen_XMinus_Drive_High()        LATBbits.LATB13   = 1
             #define ResistiveTouchScreen_XMinus_Drive_Low()         LATBbits.LATB13   = 0
-            #define ResistiveTouchScreen_XMinus_Config_As_Input()   {AD1PCFGbits.PCFG13 = 1; TRISBbits.TRISB13 = 1;}  
+            #define ResistiveTouchScreen_XMinus_Config_As_Input()   {AD1PCFGbits.PCFG13 = 1; TRISBbits.TRISB13 = 1;}
             #define ResistiveTouchScreen_XMinus_Config_As_Output()  {AD1PCFGbits.PCFG13 = 1; TRISBbits.TRISB13 = 0;}
 
-			// Y port definitions
+            // Y port definitions
             #define ResistiveTouchScreen_YPlus_Drive_High()         LATBbits.LATB14   = 1
             #define ResistiveTouchScreen_YPlus_Drive_Low()          LATBbits.LATB14   = 0
             #define ResistiveTouchScreen_YPlus_Config_As_Input()    TRISBbits.TRISB14 = 1
             #define ResistiveTouchScreen_YPlus_Config_As_Output()   TRISBbits.TRISB14 = 0
-			
-            #define ResistiveTouchScreen_YMinus_Drive_High()        LATBbits.LATB12   = 1   
+
+            #define ResistiveTouchScreen_YMinus_Drive_High()        LATBbits.LATB12   = 1
             #define ResistiveTouchScreen_YMinus_Drive_Low()         LATBbits.LATB12   = 0
-            #define ResistiveTouchScreen_YMinus_Config_As_Input()   {AD1PCFGbits.PCFG12 = 1;  TRISBbits.TRISB12 = 1;}  
+            #define ResistiveTouchScreen_YMinus_Config_As_Input()   {AD1PCFGbits.PCFG12 = 1;  TRISBbits.TRISB12 = 1;}
             #define ResistiveTouchScreen_YMinus_Config_As_Output()  {AD1PCFGbits.PCFG12 = 1;  TRISBbits.TRISB12 = 0;}
 		
-		#endif // defined(__dsPIC33E__) || defined(__PIC24E__)
-
+        #endif // defined(__dsPIC33E__) || defined(__PIC24E__)
     // end of #elif defined (MEB_BOARD)...
 
-	/* ----------------------------------------- */
-	#elif defined (GFX_PICTAIL_LCC)
-	/* ----------------------------------------- */
+    /* ----------------------------------------- */
+    #elif defined (GFX_PICTAIL_LCC)
+    /* ----------------------------------------- */
 
-		// ADC channel constants
-		// Potentiometer and Temperature sensor
-		/* The GFX PICtail LCC Board does not have a
-		 * analog pot or temperature sensor (see BMA150 for temperature
-		 * sensor data
-		 */
-		#define ADC_XPOS    ADC_CH0_POS_SAMPLEA_AN0
-		#define ADC_YPOS    ADC_CH0_POS_SAMPLEA_AN1
+        // ADC channel constants
+        // Potentiometer and Temperature sensor
+        /* The GFX PICtail LCC Board does not have a
+         * analog pot or temperature sensor (see BMA150 for temperature
+         * sensor data
+         */
+        #define ADC_XPOS    ADC_CH0_POS_SAMPLEA_AN0
+        #define ADC_YPOS    ADC_CH0_POS_SAMPLEA_AN1
 
-		// ADC Port Control Bits
+        // ADC Port Control Bits
         #define ADPCFG_XPOS AD1PCFGbits.PCFG0
         #define ADPCFG_YPOS AD1PCFGbits.PCFG1
         #define RESISTIVETOUCH_ANALOG  0
         #define RESISTIVETOUCH_DIGITAL 1
 
-		// X port definitions
+        // X port definitions
         #define ResistiveTouchScreen_XPlus_Drive_High()             LATBbits.LATB0   = 1
         #define ResistiveTouchScreen_XPlus_Drive_Low()              LATBbits.LATB0   = 0
         #define ResistiveTouchScreen_XPlus_Config_As_Input()        TRISBbits.TRISB0 = 1
         #define ResistiveTouchScreen_XPlus_Config_As_Output()       TRISBbits.TRISB0 = 0
-			
+
         #if defined(_USB) && !defined (PIC32_SK)
-           #define ResistiveTouchScreen_XMinus_Drive_High()         LATGbits.LATG15   = 1   
+           #define ResistiveTouchScreen_XMinus_Drive_High()         LATGbits.LATG15   = 1
            #define ResistiveTouchScreen_XMinus_Drive_Low()          LATGbits.LATG15   = 0
-           #define ResistiveTouchScreen_XMinus_Config_As_Input()    TRISGbits.TRISG15 = 1  
+           #define ResistiveTouchScreen_XMinus_Config_As_Input()    TRISGbits.TRISG15 = 1
            #define ResistiveTouchScreen_XMinus_Config_As_Output()   TRISGbits.TRISG15 = 0
         #else
-           #define ResistiveTouchScreen_XMinus_Drive_High()         LATDbits.LATD9    = 1   
+           #define ResistiveTouchScreen_XMinus_Drive_High()         LATDbits.LATD9    = 1
            #define ResistiveTouchScreen_XMinus_Drive_Low()          LATDbits.LATD9    = 0
-           #define ResistiveTouchScreen_XMinus_Config_As_Input()    TRISDbits.TRISD9  = 1  
+           #define ResistiveTouchScreen_XMinus_Config_As_Input()    TRISDbits.TRISD9  = 1
            #define ResistiveTouchScreen_XMinus_Config_As_Output()   TRISDbits.TRISD9  = 0
         #endif
 
-		// Y port definitions
+        // Y port definitions
         #define ResistiveTouchScreen_YPlus_Drive_High()             LATBbits.LATB1   = 1
         #define ResistiveTouchScreen_YPlus_Drive_Low()              LATBbits.LATB1   = 0
         #define ResistiveTouchScreen_YPlus_Config_As_Input()        TRISBbits.TRISB1 = 1
         #define ResistiveTouchScreen_YPlus_Config_As_Output()       TRISBbits.TRISB1 = 0
-			
-        #define ResistiveTouchScreen_YMinus_Drive_High()            LATBbits.LATB9   = 1   
+
+        #define ResistiveTouchScreen_YMinus_Drive_High()            LATBbits.LATB9   = 1
         #define ResistiveTouchScreen_YMinus_Drive_Low()             LATBbits.LATB9   = 0
-        #define ResistiveTouchScreen_YMinus_Config_As_Input()       TRISBbits.TRISB9 = 1  
+        #define ResistiveTouchScreen_YMinus_Config_As_Input()       TRISBbits.TRISB9 = 1
         #define ResistiveTouchScreen_YMinus_Config_As_Output()      TRISBbits.TRISB9 = 0
 
     // end of #elif defined (GFX_PICTAIL_LCC)...
 
+// fix this: ugghhh... formatting
 	/* ----------------------------------------- */
 	#elif defined (GFX_PICTAIL_V3) || defined (GFX_PICTAIL_V3E)  // && defined (EXPLORER_16) || PIC32 Starter Kits
 	/* ----------------------------------------- */
