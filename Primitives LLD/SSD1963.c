@@ -215,7 +215,7 @@ static void GPIO_WR(BYTE pin, BOOL state);
 ********************************************************************/
 WORD IsDeviceBusy()
 {
-	return 0;
+    return 0;
 }
 
 #if defined (USE_DOUBLE_BUFFERING)
@@ -257,9 +257,6 @@ static void ExchangeDrawAndFrameBuffers(void)
     _drawbuffer = DestBuffer;
 	//...
 }
-#endif
-
-#if defined (USE_DOUBLE_BUFFERING)
 /*********************************************************************
 * Function:  SwitchOnDoubleBuffering()
 *
@@ -289,8 +286,6 @@ void SwitchOnDoubleBuffering(void)
         InvalidateAll(); 
     }  
 }
-
-
 /*********************************************************************
 * Function:  SwitchOffDoubleBuffering()
 *
@@ -317,7 +312,6 @@ void SwitchOffDoubleBuffering(void)
         blEnableDoubleBuffering = 0; 
     }
 }
-
 /*********************************************************************
 * Function:  void UpdateDisplayNow(void)
 *
@@ -337,18 +331,14 @@ void SwitchOffDoubleBuffering(void)
 ********************************************************************/
 void UpdateDisplayNow(void)
 {
-	SetScrollArea(0, GetMaxY()+1,0);
-	if(_drawbuffer == GFX_BUFFER1)
-	{
-		SetScrollStart(0);
-	} else
-	{
-		SetScrollStart(GetMaxY()+1);
-	}
+    SetScrollArea(0, GetMaxY()+1,0);
+    if(_drawbuffer == GFX_BUFFER1)
+        SetScrollStart(0);
+    else
+        SetScrollStart(GetMaxY()+1);
+
     ExchangeDrawAndFrameBuffers();
 }
-
-
 /*********************************************************************
 * Function:  void RequestDisplayUpdate(void)
 *

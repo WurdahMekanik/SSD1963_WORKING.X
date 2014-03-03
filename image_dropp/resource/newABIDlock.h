@@ -66,8 +66,8 @@
  * Description:  412x233 pixels, 16-bits per pixel
  ***********************************/
 extern const IMAGE_FLASH newABIDlock;
-#define null_WIDTH     (412)
-#define null_HEIGHT    (233)
-#define null_SIZE      (191998)
+#define newABIDlock_WIDTH     (412)
+#define newABIDlock_HEIGHT    (233)
+#define newABIDlock_SIZE      (191998)
 #endif
 

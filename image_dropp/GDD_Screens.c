@@ -57,7 +57,6 @@
 ***************************************************/
 GOL_SCHEME* defscheme;
 
-
 /***************************************************
 * Function and global Declarations
 ***************************************************/
@@ -79,7 +78,6 @@ void GDDDemoCreateFirstScreen(void)
     update = 1;
     (*CreateFunctionArray[currentGDDDemoScreenIndex])();
 }
-
 /***************************************************
 * Function      : GDDDemoNextScreen
 * Parameters    : none
@@ -95,7 +93,6 @@ void GDDDemoNextScreen(void)
     }
     update = 1;
 }
-
 /***************************************************
 * Function      : GDDDemoGoToScreen
 * Parameters    : int screenIndex
@@ -111,7 +108,6 @@ void GDDDemoGoToScreen(int screenIndex)
     }
     update = 1;
 }
-
 /***************************************************
 * Function       : GDDDemoGOLDrawCallback
 * Parameters     : none
@@ -136,7 +132,6 @@ void GDDDemoGOLDrawCallback(void)
         update = 0;
     }
 }
-
 /***************************************************
 * Function       : CreateError
 * Parameters     : none
@@ -156,7 +151,6 @@ void CreateError(char* string)
     else
         {OutTextXY(0,0, string);}
 }
-
 /***************************************************
 * Function 	      :    CreateFIRST
 * Parameters      :    none
@@ -169,8 +163,7 @@ void CreateFIRST(void)
     SetColor(RGBConvert(248, 252, 248));
     ClearDevice();
 
-
-     if(defscheme != NULL) free(defscheme);
+    if(defscheme != NULL) free(defscheme);
         defscheme = GOLCreateScheme();
 
     defscheme->Color0 = RGBConvert(32, 168, 224);
@@ -183,7 +176,6 @@ void CreateFIRST(void)
     defscheme->ColorDisabled = RGBConvert(208, 224, 240);
     defscheme->CommonBkColor = RGBConvert(208, 236, 240);
     defscheme->pFont = (void*)&Gentium_16;
-
 
     PICTURE *pPCB_1;
     pPCB_1 = PictCreate(  PCB_1, //name
@@ -202,24 +194,17 @@ void CreateFIRST(void)
       CreateError(0);
       while(1); //Fatal Error, Check for memory leak or heap size
     }
-
-
 }
-
 /***************************************************
 * Function       : CreateFunctionArray
 * Parameters     : none
 * Return         : none
 * Description    : Creates a array of GOL function pointers
 ***************************************************/
-void (*CreateFunctionArray[NUM_GDD_SCREENS])(void)=
-    
+void (*CreateFunctionArray[NUM_GDD_SCREENS])(void)=    
 {
     &CreateFIRST,
 };
-
-
-
 /***************************************************
 * Function       : CreatePrimitivesFunctionArray
 * Parameters     : none
@@ -227,9 +212,6 @@ void (*CreateFunctionArray[NUM_GDD_SCREENS])(void)=
 * Description    : Creates a array of GPL function pointers
 ***************************************************/
 void (*CreatePrimitivesFunctionArray[NUM_GDD_SCREENS])(void)=
-    
 {
     NULL,
 };
-
-
